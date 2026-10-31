@@ -12,6 +12,7 @@
   <script src="app.js" type="module"></script>
 </head>
 <body>
+  <div class="particle-field" id="particle-field"><div class="cp-wash"></div><canvas aria-label="Pastel yellow, blue, and green particles with gentle interactive swirls"></canvas></div>
   <header class="site-header">
     <a class="wordmark" href="#opening" aria-label="Paige, return to opening">Paige<span>Physics · Finance · Possibility</span></a>
     <a class="skip" href="#resume">Skip to résumé <span aria-hidden="true">↗</span></a>
@@ -19,7 +20,7 @@
   <main>
     <section id="opening" class="story" aria-label="From particles to possible futures">
       <div class="screen">
-        <div class="scene-layer" id="layer-a"></div>
+        <div class="scene-layer stage" id="layer-a" style="opacity:1"><img src="assets/stage.webp" alt="PAIGE in illuminated ivory marble letters on a black stage" style="width:98%;height:auto;max-height:88%;object-fit:contain"></div>
         <div class="scene-layer" id="layer-b"></div>
         <div class="shade" aria-hidden="true"></div>
         <div class="opening-note" id="opening-note"><p>A story about possibility.</p><span>Scroll to explore <b aria-hidden="true">↓</b></span></div>
@@ -44,7 +45,6 @@
       <div id="story-transcript" class="sr-only"></div>
     </section>
     <section id="resume" class="resume" aria-labelledby="resume-title">
-      <div class="particle-field" id="particle-field"><div class="cp-wash"></div><canvas aria-label="Pastel yellow, blue, and green particles with gentle interactive swirls"></canvas></div>
       <div class="resume-inner">
         <p class="eyebrow">The intersection is where I want to work.</p>
         <h2 id="resume-title">Curiosity about the science.<br>Judgment about its possibilities.</h2>
@@ -59,5 +59,6 @@
       </div>
     </section>
   </main>
+  <noscript><style>.story{height:100svh}.scene-layer{opacity:1}.story-controls{display:none}</style><p style="padding:30px">Enable JavaScript to explore the scroll story, or continue to the résumé below.</p></noscript>
 </body>
 </html>

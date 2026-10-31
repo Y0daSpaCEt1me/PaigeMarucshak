@@ -320,6 +320,6 @@
       rebuildPalette(); resize();
       observer.observe(stage); intersection.observe(root);
       setActive(false);
-      return { setActive };
+      return { setActive, setPaused(value) { state.paused=value; setActive(active); draw(); } };
     };
   })();
