@@ -1,4 +1,4 @@
-# Paige — From possibility to progress
+# PaigeMaruschak
 
 A static, scroll-driven portfolio story, beginning with PAIGE on a black marble stage and moving through particles, laser fusion, electricity, company development, financial models, and quantum computing. It ends in the original pastel particle résumé background.
 
@@ -24,4 +24,10 @@ Financial models, companies, development paths, and scientific imagery are illus
 
 The `dist` directory can be deployed on static hosting, GitHub Pages, or Vercel. The `.openai/hosting.json` file is only used for the private Sites preview deployment.
 
-User-selected GitHub repository name: `PaigeMaruschak`. The connected GitHub account did not return this repository at initial creation; no GitHub synchronization has been performed yet. Source and assets are retained here for connection once the repository becomes accessible.
+The connected GitHub repository is `Y0daSpaCEt1me/PaigeMarucshak` (the repository currently spells the surname differently from the requested Site title, `PaigeMaruschak`). The local `github` remote targets that existing private repository. Sites publication continues through the Sites source repository and deployment workflow; a GitHub push alone does not deploy to Sites.
+
+## Approved direction pending final résumé
+
+The final résumé has not been supplied. Keep the existing introduction provisional and do not invent qualifications, jobs, dates, or accomplishments. When the approved résumé arrives, place all résumé content in semitransparent white 3D blocks over the existing pastel particle background. The current introduction, interest cards, research card, and footer establish that treatment with translucent white surfaces, highlights, shallow extruded edges, and soft shadows.
+
+Proposed optional addition: a “Beyond the résumé” puzzle gallery after research and before the footer, with twelve different twisty puzzles on individual translucent plinths. Use a 4-column desktop, 2-column tablet, and 1-column mobile layout. Each could offer a name, photo or interactive model, and a short personal note. Confirm the twelve actual puzzle types and imagery before implementing; do not imply ownership, solve times, or achievements that have not been provided. Keep rotation opt-in and respect reduced motion. This is a proposal, not a published gallery.

@@ -4,3 +4,7 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.cp-wash{animation:none}*,*:before,*:after{transition:none!important}}
 /* One continuous particle field bridges the final frame and the résumé. */
 html{scroll-padding-top:0}.particle-field{position:fixed;inset:0;z-index:-1}.resume{background:transparent}#interests,#research{scroll-margin-top:100px}
+/* White translucent blocks establish the layout for the final approved résumé. */
+.glass-block,.resume-grid article,.resume footer{background:linear-gradient(135deg,rgba(255,255,255,.82),rgba(255,255,255,.56));border:1px solid rgba(255,255,255,.9);border-radius:20px;box-shadow:inset 0 2px 1px #fff,0 8px 0 rgba(202,219,220,.5),0 22px 42px rgba(40,73,81,.14);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.resume-introduction{padding:clamp(24px,4vw,52px);margin-bottom:44px}.resume-introduction>.eyebrow{margin-top:0}.resume-nav{margin:32px 0 0;flex-wrap:wrap}.resume-grid{gap:36px}.resume-grid article{padding:clamp(24px,3vw,38px)}.resume footer{padding:24px 30px;margin-top:44px}.resume a:focus-visible,.resume button:focus-visible{outline-color:#253d43}
+@media(max-width:700px){.wordmark{font-size:clamp(16px,4.8vw,22px);letter-spacing:0}.resume-inner{padding-left:5vw;padding-right:5vw}.resume h2{font-size:clamp(29px,7.8vw,39px)}.resume-nav{gap:18px}.resume-nav button{margin-left:0}.resume-grid{gap:28px}.resume-introduction{margin-bottom:28px}.resume footer{padding:24px}}
