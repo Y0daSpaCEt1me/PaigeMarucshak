@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Paige — exploring the intersection of physics, finance, and emerging technologies. A journey from particles to possible futures.">
+  <title>Paige — From possibility to progress</title>
+  <link rel="preload" as="image" href="assets/stage.webp">
+  <link rel="stylesheet" href="style.css">
+  <script src="particles.js" defer></script>
+  <script src="app.js" type="module"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="wordmark" href="#opening" aria-label="Paige, return to opening">Paige<span>Physics · Finance · Possibility</span></a>
+    <a class="skip" href="#resume">Skip to résumé <span aria-hidden="true">↗</span></a>
+  </header>
+  <main>
+    <section id="opening" class="story" aria-label="From particles to possible futures">
+      <div class="screen">
+        <div class="scene-layer" id="layer-a"></div>
+        <div class="scene-layer" id="layer-b"></div>
+        <div class="shade" aria-hidden="true"></div>
+        <div class="opening-note" id="opening-note"><p>A story about possibility.</p><span>Scroll to explore <b aria-hidden="true">↓</b></span></div>
+        <div class="scene-copy" id="scene-copy"><p class="eyebrow" id="scene-eyebrow"></p><h1 id="scene-title"></h1><p id="scene-description"></p></div>
+        <div class="timeline" id="timeline" hidden>
+          <div class="timeline-heading"><span id="timeline-company"></span><span>Illustrative development path</span></div>
+          <ol id="milestones"></ol>
+        </div>
+        <div class="story-controls">
+          <span id="scene-count" aria-label="Scene number">01 / 36</span>
+          <nav class="chapters" aria-label="Story chapters">
+            <button data-chapter="0" aria-label="Opening" title="Opening">01 <span>Paige</span></button>
+            <button data-chapter="1" aria-label="The science" title="The science">02 <span>Science</span></button>
+            <button data-chapter="2" aria-label="One possible future" title="One possible future">03 <span>Future</span></button>
+            <button data-chapter="3" aria-label="Building that future" title="Building that future">04 <span>Investment</span></button>
+            <button data-chapter="4" aria-label="My intersection" title="My intersection">05 <span>Intersection</span></button>
+          </nav>
+          <div class="scene-arrows"><button id="previous" aria-label="Previous scene">←</button><button id="next" aria-label="Next scene">→</button></div>
+        </div>
+        <div class="progress" aria-hidden="true"><span id="progress-fill"></span></div>
+      </div>
+      <div id="story-transcript" class="sr-only"></div>
+    </section>
+    <section id="resume" class="resume" aria-labelledby="resume-title">
+      <div class="particle-field" id="particle-field"><div class="cp-wash"></div><canvas aria-label="Pastel yellow, blue, and green particles with gentle interactive swirls"></canvas></div>
+      <div class="resume-inner">
+        <p class="eyebrow">The intersection is where I want to work.</p>
+        <h2 id="resume-title">Curiosity about the science.<br>Judgment about its possibilities.</h2>
+        <p class="intro">I’m Paige. I’m interested in understanding emerging technologies—and evaluating how they could become viable businesses.</p>
+        <nav class="resume-nav" aria-label="About Paige"><a href="#interests">Interests ↓</a><a href="#research">Research ↓</a><button id="motion-toggle" aria-pressed="false">Pause particles</button></nav>
+        <div class="resume-grid" id="interests">
+          <article><span class="section-number">01 / Physics</span><h3>Understanding what’s possible.</h3><p>Quantum computing, materials, and alternative energy. I want to understand the physical ideas behind emerging technologies and the challenges between a promising experiment and a useful system.</p></article>
+          <article><span class="section-number">02 / Finance</span><h3>Asking what could be viable.</h3><p>Research spending, capital requirements, operating costs, and potential demand. I’m interested in how technical understanding can inform investment decisions.</p></article>
+          <article class="research" id="research"><span class="section-number">03 / Where they meet</span><h3>Learning through research.</h3><p>My interests include computational materials research, molecular dynamics with Python and LAMMPS, and the relationship between scientific progress and commercialization.</p><div class="tags"><span>Python</span><span>LAMMPS</span><span>Materials research</span><span>Emerging technologies</span></div></article>
+        </div>
+        <footer><a href="#opening">Back to the beginning ↑</a><p>The companies and development paths in this story are illustrative. Financial assumptions are scenarios, not forecasts.</p></footer>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
