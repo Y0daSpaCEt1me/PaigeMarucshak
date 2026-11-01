@@ -26,5 +26,5 @@ export const scenes=[
  {asset:'fusion-commercial',chapter:3,units:.9,timeline:'fusion',step:3,crop:.77,eyebrow:'Fusion / Deployment capital',title:'Commercial deployment',description:'Scale only as evidence supports reliability, cost, and a viable route to customers.'},
  {asset:'fusion-campus',chapter:4,kind:'closing',units:1.45,eyebrow:'04 / My intersection',title:'This is one possible technological future. Reaching it requires scientific progress, engineering—and investment informed by both.',description:''},
  {asset:'fusion-campus',chapter:4,kind:'closing',units:1.45,eyebrow:'Paige / Physics + finance',title:'I want to work at that intersection—understanding emerging technologies and evaluating how they could become viable businesses.',description:''},
- {asset:'dissolve',chapter:4,kind:'dissolve',units:.85,title:'',description:''}
+ {asset:'fusion-campus',chapter:4,kind:'dissolve',units:.85,title:'',description:''}
 ];

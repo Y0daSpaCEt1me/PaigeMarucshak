@@ -33,6 +33,7 @@ function renderLayer(el,s){
 function updateCopy(i){
  const s=scenes[i];title.textContent=s.title;desc.textContent=s.description;eyebrow.textContent=s.eyebrow??'';
  copy.className='scene-copy'+(s.kind==='closing'?' centered':'');
+ screen.classList.toggle('needs-contrast',s.timeline||s.kind==='closing');
  screen.classList.toggle('is-timeline',!!s.timeline);screen.classList.toggle('is-paper',s.kind==='paper');screen.classList.toggle('is-closing',s.kind==='closing');
  $('opening-note').hidden=s.kind!=='stage';
  timeline.hidden=!s.timeline;
