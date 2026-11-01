@@ -1,5 +1,4 @@
 export const fusionMilestones=['Repeatable ignition','Chamber durability','Pilot power generation','Commercial deployment'];
-export const quantumMilestones=['Validated qubit performance','Error-corrected prototype','Scalable system','Commercial deployment'];
 // Scroll distances are expressed in viewport heights, not seconds.
 export const scenes=[
  {asset:'stage',chapter:0,kind:'stage',units:1.1,title:'Paige',description:'A story about possibility.'},
@@ -25,15 +24,7 @@ export const scenes=[
  {asset:'fusion-durability',chapter:3,units:.8,timeline:'fusion',step:1,crop:.785,eyebrow:'Fusion / Engineering investment',title:'Chamber durability',description:'Support materials testing and maintainable components that can withstand repeated shots.'},
  {asset:'fusion-pilot',chapter:3,units:.85,timeline:'fusion',step:2,crop:.77,eyebrow:'Fusion / Pilot capital',title:'Pilot power generation',description:'Finance an integrated pilot to demonstrate electricity production and measure the whole system’s performance.'},
  {asset:'fusion-commercial',chapter:3,units:.9,timeline:'fusion',step:3,crop:.77,eyebrow:'Fusion / Deployment capital',title:'Commercial deployment',description:'Scale only as evidence supports reliability, cost, and a viable route to customers.'},
- {asset:'quantum-campus',chapter:3,units:.7,eyebrow:'Now follow the electricity',title:'A different technology. Related questions.',description:'The quantum company also needs a path from research to a useful, viable business.'},
- {asset:'quantum-outline',chapter:3,units:.6,eyebrow:'Quantum computing / The design',title:'Make the infrastructure visible.',description:'Hardware, control electronics, cooling, and a facility designed around them.'},
- {asset:'quantum-paper',chapter:3,kind:'paper',units:.7,eyebrow:'From architecture to decisions',title:'A second plan on paper.',description:'Connect the design to the technical evidence needed to build it.'},
- {asset:'quantum-model',chapter:3,kind:'paper',units:1,timeline:null,eyebrow:'Quantum computing / The financial model',title:'What could make the business viable?',description:'Consider research, construction, operations, and potential revenue together. The numbers here are illustrative scenarios.'},
- {asset:'quantum-qubit',chapter:3,units:.8,timeline:'quantum',step:0,crop:.76,eyebrow:'Quantum / Research funding',title:'Validated qubit performance',description:'Fund careful measurement of fidelity, coherence, and reproducibility—the foundation of the technical case.'},
- {asset:'quantum-prototype',chapter:3,units:.8,timeline:'quantum',step:1,crop:.785,eyebrow:'Quantum / Prototype investment',title:'Error-corrected prototype',description:'Support the hardware and control research needed to demonstrate reliable logical operations.'},
- {asset:'quantum-scale',chapter:3,units:.8,timeline:'quantum',step:2,crop:.74,eyebrow:'Quantum / Scaling capital',title:'Scalable system',description:'Invest in integration and manufacturing while testing how performance changes as the system grows.'},
- {asset:'quantum-commercial',chapter:3,units:.95,timeline:'quantum',step:3,crop:.80,eyebrow:'Quantum / Commercial investment',title:'Commercial deployment',description:'Evaluate whether useful capabilities can meet customer needs at a sustainable cost.'},
- {asset:'quantum-campus',chapter:4,kind:'closing',units:1.45,eyebrow:'04 / My intersection',title:'This is one possible technological future. Reaching it requires scientific progress, engineering—and investment informed by both.',description:''},
- {asset:'quantum-campus',chapter:4,kind:'closing',units:1.45,eyebrow:'Paige / Physics + finance',title:'I want to work at that intersection—understanding emerging technologies and evaluating how they could become viable businesses.',description:''},
+ {asset:'fusion-campus',chapter:4,kind:'closing',units:1.45,eyebrow:'04 / My intersection',title:'This is one possible technological future. Reaching it requires scientific progress, engineering—and investment informed by both.',description:''},
+ {asset:'fusion-campus',chapter:4,kind:'closing',units:1.45,eyebrow:'Paige / Physics + finance',title:'I want to work at that intersection—understanding emerging technologies and evaluating how they could become viable businesses.',description:''},
  {asset:'dissolve',chapter:4,kind:'dissolve',units:.85,title:'',description:''}
 ];

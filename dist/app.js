@@ -1,4 +1,4 @@
-import {scenes,fusionMilestones,quantumMilestones} from './scenes.js';
+import {scenes,fusionMilestones} from './scenes.js';
 history.scrollRestoration='manual';
 if(!location.hash)scrollTo(0,0);
 const assets=await fetch('assets.json').then(r=>{if(!r.ok)throw Error('Image manifest unavailable');return r.json()});
@@ -37,8 +37,8 @@ function updateCopy(i){
  $('opening-note').hidden=s.kind!=='stage';
  timeline.hidden=!s.timeline;
  if(s.timeline){
-  $('timeline-company').textContent=s.timeline==='fusion'?'Fusion / Technical milestones':'Quantum / Technical milestones';
-  const labels=s.timeline==='fusion'?fusionMilestones:quantumMilestones;
+  $('timeline-company').textContent='Fusion / Technical milestones';
+  const labels=fusionMilestones;
   milestones.replaceChildren(...labels.map((label,j)=>{const li=document.createElement('li');li.textContent=label;if(j===s.step){li.className='current';li.setAttribute('aria-current','step')}return li}));
  }
  document.querySelectorAll('[data-chapter]').forEach(b=>{if(+b.dataset.chapter===s.chapter)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current')});
@@ -65,6 +65,7 @@ function draw(){
  const copyOpacity=reduced.matches?1:changingTitle?1-Math.sin(mix*Math.PI)*.92:1;
  copy.style.opacity=scenes[active].kind==='stage'||scenes[active].kind==='dissolve'?0:copyOpacity;
  screen.querySelector('.shade').style.opacity=['stage','dissolve','paper'].includes(scenes[active].kind)?0:scenes[active].kind==='micro'?.45:.8;
+ screen.querySelector('.progress').hidden=active===scenes.length-1;
  $('progress-fill').style.transform=`scaleX(${clamp(y/(total*viewport))})`;
  document.body.classList.toggle('on-resume',resume.getBoundingClientRect().top<90);
  if(particleEngine)particleEngine.setActive(!paused&&(active===scenes.length-1||resume.getBoundingClientRect().top<innerHeight));
@@ -75,12 +76,13 @@ document.querySelectorAll('[data-chapter]').forEach(b=>b.addEventListener('click
 $('previous').addEventListener('click',()=>go(currentIndex-1));$('next').addEventListener('click',()=>go(currentIndex+1));
 addEventListener('scroll',schedule,{passive:true});
 addEventListener('resize',()=>{layers.forEach(el=>delete el.dataset.asset);resize()});
-reduced.addEventListener('change',e=>{paused=e.matches;updateMotionButton();schedule()});
-function updateMotionButton(){$('motion-toggle').textContent=paused?'Resume particles':'Pause particles';$('motion-toggle').setAttribute('aria-pressed',String(paused));if(particleEngine)particleEngine.setPaused(paused);}
-$('motion-toggle').addEventListener('click',()=>{paused=!paused;updateMotionButton();schedule()});
+reduced.addEventListener('change',e=>{paused=e.matches;if(particleEngine)particleEngine.setPaused(paused);schedule()});
 if(window.PaigeParticles){particleEngine=window.PaigeParticles($('particle-field'));}
 for(const type of ['pointermove','pointerdown','pointerleave'])resume.addEventListener(type,event=>{if(paused)return;$('particle-field').querySelector('canvas').dispatchEvent(new PointerEvent(type,{clientX:event.clientX,clientY:event.clientY}));},{passive:true});
-updateMotionButton();resize();draw();
+resize();draw();
+// Restore direct résumé links after the dynamic story height has been calculated.
+const initialTarget=location.hash?document.getElementById(decodeURIComponent(location.hash.slice(1))):null;
+if(initialTarget)requestAnimationFrame(()=>initialTarget.scrollIntoView({behavior:'instant'}));
 // A readable equivalent for assistive technology, without announcing on every scroll.
 const transcript=$('story-transcript');scenes.forEach(s=>{if(!s.title)return;const h=document.createElement('h2');h.textContent=s.title;const p=document.createElement('p');p.textContent=s.description;transcript.append(h,p)});
 // Decode the next scenes early; keep downloads incremental on slower connections.
