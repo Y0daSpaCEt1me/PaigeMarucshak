@@ -17,7 +17,7 @@ function renderLayer(el,s){
  const a=assets[s.asset];el.replaceChildren();el.className='scene-layer '+(s.kind??'')+(s.timeline?' milestone':'');
  const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
  svg.setAttribute('viewBox',`0 0 ${a.w} ${Math.floor(a.h*(s.crop??1))}`);
- svg.setAttribute('preserveAspectRatio',s.kind==='stage'||s.kind==='micro'||s.kind==='paper'||innerWidth<701?'xMidYMid meet':'xMidYMid slice');
+ svg.setAttribute('preserveAspectRatio',s.kind==='stage'||s.kind==='micro'||s.kind==='paper'||s.asset==='fusion-ignition'||innerWidth<701?'xMidYMid meet':'xMidYMid slice');
  svg.setAttribute('aria-hidden','true');
  const image=document.createElementNS('http://www.w3.org/2000/svg','image');
  image.setAttribute('href',a.file);image.setAttribute('width',a.w);image.setAttribute('height',a.h);
@@ -34,6 +34,7 @@ function updateCopy(i){
  const s=scenes[i];title.textContent=s.title;desc.textContent=s.description;eyebrow.textContent=s.eyebrow??'';
  copy.className='scene-copy'+(s.kind==='closing'?' centered':'');
  screen.classList.toggle('needs-contrast',s.timeline||s.kind==='closing'||s.kind==='paper');
+ screen.classList.toggle('is-ignition',s.asset==='fusion-ignition');
  screen.classList.toggle('is-timeline',!!s.timeline);screen.classList.toggle('is-paper',s.kind==='paper');screen.classList.toggle('is-closing',s.kind==='closing');
  $('opening-note').hidden=s.kind!=='stage';
  timeline.hidden=!s.timeline;

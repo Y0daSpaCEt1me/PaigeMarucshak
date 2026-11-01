@@ -29,3 +29,15 @@ html{scroll-padding-top:0}.particle-field{position:fixed;inset:0;z-index:-1}.res
  .screen.is-paper .scene-copy h1{font-size:24px;margin:8px 0 12px}
  .screen.is-paper .scene-copy .eyebrow{font-size:8px}
 }
+/* Give the ignition reaction its own unobstructed image area. */
+.screen.is-ignition .scene-layer.milestone{inset:85px 3vw 345px}
+.screen.is-ignition .scene-copy{left:5vw;right:5vw;bottom:220px;max-width:none;padding:12px 0;background:none;border:0;box-shadow:none}
+.screen.is-ignition .scene-copy h1{font-size:clamp(24px,2.4vw,34px);margin:6px 0 9px}
+.screen.is-ignition .scene-copy>p:last-child{max-width:100%;font-size:15px;line-height:1.4}
+.screen.is-ignition .scene-copy .eyebrow{margin:0;font-size:9px}
+@media(max-width:700px){
+ .screen.is-ignition .scene-layer.milestone{inset:100px 2vw 405px}
+ .screen.is-ignition .scene-copy{bottom:235px;left:6vw;right:6vw;padding:10px 0}
+ .screen.is-ignition .scene-copy h1{font-size:25px}
+ .screen.is-ignition .scene-copy>p:last-child{font-size:13px}
+}
