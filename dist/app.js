@@ -17,7 +17,7 @@ function renderLayer(el,s){
  const a=assets[s.asset];el.replaceChildren();el.className='scene-layer '+(s.kind??'')+(s.timeline?' milestone':'');
  const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
  svg.setAttribute('viewBox',`0 0 ${a.w} ${Math.floor(a.h*(s.crop??1))}`);
- svg.setAttribute('preserveAspectRatio',s.kind==='stage'||s.kind==='micro'||s.kind==='paper'||s.asset==='fusion-ignition'||innerWidth<701?'xMidYMid meet':'xMidYMid slice');
+ svg.setAttribute('preserveAspectRatio',s.kind==='stage'||s.kind==='micro'||s.kind==='paper'||innerWidth<701?'xMidYMid meet':'xMidYMid slice');
  svg.setAttribute('aria-hidden','true');
  const image=document.createElementNS('http://www.w3.org/2000/svg','image');
  image.setAttribute('href',a.file);image.setAttribute('width',a.w);image.setAttribute('height',a.h);

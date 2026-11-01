@@ -41,3 +41,10 @@ html{scroll-padding-top:0}.particle-field{position:fixed;inset:0;z-index:-1}.res
  .screen.is-ignition .scene-copy h1{font-size:25px}
  .screen.is-ignition .scene-copy>p:last-child{font-size:13px}
 }
+/* Blend ignition imagery, caption, and timeline into one continuous stage. */
+.screen.is-ignition .scene-layer.milestone{inset:0 0 26%;mask-image:linear-gradient(to bottom,#000 0%,#000 62%,transparent 100%)}
+.screen.is-ignition .scene-layer.milestone svg{width:100%;height:100%}
+.screen.is-ignition .timeline{background:none}
+.screen.is-ignition .shade{background:linear-gradient(to bottom,#0007 0%,transparent 20%,transparent 48%,#000 75%)}
+.screen.is-ignition .scene-copy{text-shadow:0 2px 8px #000}
+@media(max-width:700px){.screen.is-ignition .scene-layer.milestone{inset:70px 0 39%;mask-image:linear-gradient(to bottom,transparent 0%,#000 14%,#000 58%,transparent 100%)}}
