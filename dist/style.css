@@ -30,21 +30,59 @@ html{scroll-padding-top:0}.particle-field{position:fixed;inset:0;z-index:-1}.res
  .screen.is-paper .scene-copy .eyebrow{font-size:8px}
 }
 /* Give the ignition reaction its own unobstructed image area. */
-.screen.is-ignition .scene-layer.milestone{inset:85px 3vw 345px}
-.screen.is-ignition .scene-copy{left:5vw;right:5vw;bottom:220px;max-width:none;padding:12px 0;background:none;border:0;box-shadow:none}
-.screen.is-ignition .scene-copy h1{font-size:clamp(24px,2.4vw,34px);margin:6px 0 9px}
-.screen.is-ignition .scene-copy>p:last-child{max-width:100%;font-size:15px;line-height:1.4}
-.screen.is-ignition .scene-copy .eyebrow{margin:0;font-size:9px}
+.screen.is-timeline .scene-layer.milestone{inset:85px 3vw 345px}
+.screen.is-timeline .scene-copy{left:5vw;right:5vw;bottom:220px;max-width:none;padding:12px 0;background:none;border:0;box-shadow:none}
+.screen.is-timeline .scene-copy h1{font-size:clamp(24px,2.4vw,34px);margin:6px 0 9px}
+.screen.is-timeline .scene-copy>p:last-child{max-width:100%;font-size:15px;line-height:1.4}
+.screen.is-timeline .scene-copy .eyebrow{margin:0;font-size:9px}
 @media(max-width:700px){
- .screen.is-ignition .scene-layer.milestone{inset:100px 2vw 405px}
- .screen.is-ignition .scene-copy{bottom:235px;left:6vw;right:6vw;padding:10px 0}
- .screen.is-ignition .scene-copy h1{font-size:25px}
- .screen.is-ignition .scene-copy>p:last-child{font-size:13px}
+ .screen.is-timeline .scene-layer.milestone{inset:100px 2vw 405px}
+ .screen.is-timeline .scene-copy{bottom:235px;left:6vw;right:6vw;padding:10px 0}
+ .screen.is-timeline .scene-copy h1{font-size:25px}
+ .screen.is-timeline .scene-copy>p:last-child{font-size:13px}
 }
 /* Blend ignition imagery, caption, and timeline into one continuous stage. */
-.screen.is-ignition .scene-layer.milestone{inset:0 0 26%;mask-image:linear-gradient(to bottom,#000 0%,#000 62%,transparent 100%)}
-.screen.is-ignition .scene-layer.milestone svg{width:100%;height:100%}
-.screen.is-ignition .timeline{background:none}
-.screen.is-ignition .shade{background:linear-gradient(to bottom,#0007 0%,transparent 20%,transparent 48%,#000 75%)}
-.screen.is-ignition .scene-copy{text-shadow:0 2px 8px #000}
-@media(max-width:700px){.screen.is-ignition .scene-layer.milestone{inset:70px 0 39%;mask-image:linear-gradient(to bottom,transparent 0%,#000 14%,#000 58%,transparent 100%)}}
+.screen.is-timeline .scene-layer.milestone{inset:0 0 26%;mask-image:linear-gradient(to bottom,#000 0%,#000 62%,transparent 100%)}
+.screen.is-timeline .scene-layer.milestone svg{width:100%;height:100%}
+.screen.is-timeline .timeline{background:none}
+.screen.is-timeline .shade{background:linear-gradient(to bottom,#0007 0%,transparent 20%,transparent 48%,#000 75%)}
+.screen.is-timeline .scene-copy{text-shadow:0 2px 8px #000}
+@media(max-width:700px){.screen.is-timeline .scene-layer.milestone{inset:70px 0 39%;mask-image:linear-gradient(to bottom,transparent 0%,#000 14%,#000 58%,transparent 100%)}}
+/* Compact story captions so the imagery remains the focus. */
+.scene-copy{max-width:630px}
+.scene-copy h1{font-size:clamp(28px,3.6vw,57px)}
+.scene-copy>p:last-child{font-size:clamp(13px,1.15vw,17px);max-width:510px}
+.screen.needs-contrast .scene-copy{padding:18px 22px}
+.screen.is-timeline .scene-copy{max-width:570px}
+.screen.is-timeline .scene-copy h1{font-size:clamp(24px,2.5vw,38px)}
+.screen.is-closing .scene-copy{left:14%;width:72%}
+.screen.is-closing .scene-copy h1{font-size:clamp(26px,2.7vw,42px)}
+.screen.is-paper .scene-copy{padding:0}
+.screen.is-paper .scene-copy h1{font-size:clamp(22px,2.1vw,32px)}
+.screen.is-timeline .scene-copy{padding:10px 0}
+.screen.is-timeline .scene-copy h1{font-size:clamp(23px,2.2vw,31px)}
+@media(max-width:700px){
+ .scene-copy h1{font-size:30px}
+ .screen.needs-contrast .scene-copy{padding:14px}
+ .screen.is-timeline .scene-copy h1{font-size:25px}
+ .screen.is-closing .scene-copy{left:8%;width:84%}
+ .screen.is-closing .scene-copy h1{font-size:clamp(21px,5.2vw,25px)}
+ .screen.is-paper .scene-copy,.screen.is-timeline .scene-copy{padding:0}
+ .screen.is-paper .scene-copy h1,.screen.is-timeline .scene-copy h1{font-size:23px}
+}
+/* One continuous gray surface for the paper and its caption. */
+.screen.is-paper{background:#4a4844 url('assets/gray-surface.svg') repeat!important}
+.screen.is-paper .shade{display:none}
+.screen.is-paper .scene-layer.paper{background:transparent;display:flex;align-items:center;justify-content:center}
+.screen.is-paper .scene-layer.paper svg{height:auto;max-height:100%;aspect-ratio:1672/941;mask-image:linear-gradient(to right,transparent,#000 8%,#000 94%,transparent),linear-gradient(to bottom,transparent,#000 12%,#000 88%,transparent);mask-composite:intersect}
+.screen.is-paper .scene-copy{background:none;border:0;box-shadow:none;text-shadow:0 1px 3px #0006}
+
+.bubble-veil{position:absolute;inset:-5% 0 -20%;overflow:hidden;pointer-events:none;opacity:0}
+.bubble-veil i{position:absolute;aspect-ratio:1;border-radius:50%;background:#b8e5ecb3}
+.bubble-veil i:nth-child(3n){background:#e2ec9dc2}
+.bubble-veil i:nth-child(3n+1){background:#c7e4c0bd}
+.screen.is-closing .scene-copy{left:50%;transform:translateX(-50%);width:fit-content;max-width:min(75vw,850px);padding:16px 22px}
+.screen.is-closing .scene-copy>p:empty{display:none}
+.screen.is-closing .scene-copy .eyebrow{margin:0 0 12px}
+.screen.is-timeline .scene-copy{border:0;background:transparent;box-shadow:none}
+@media(max-width:700px){.screen.is-closing .scene-copy{width:84%;max-width:none;padding:14px}}

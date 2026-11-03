@@ -34,12 +34,12 @@ function updateCopy(i){
  const s=scenes[i];title.textContent=s.title;desc.textContent=s.description;eyebrow.textContent=s.eyebrow??'';
  copy.className='scene-copy'+(s.kind==='closing'?' centered':'');
  screen.classList.toggle('needs-contrast',s.timeline||s.kind==='closing'||s.kind==='paper');
- screen.classList.toggle('is-ignition',s.asset==='fusion-ignition');
+
  screen.classList.toggle('is-timeline',!!s.timeline);screen.classList.toggle('is-paper',s.kind==='paper');screen.classList.toggle('is-closing',s.kind==='closing');
  $('opening-note').hidden=s.kind!=='stage';
  timeline.hidden=!s.timeline;
  if(s.timeline){
-  $('timeline-company').textContent='Fusion / Technical milestones';
+  $('timeline-company').textContent='Fusion / Investment milestones';
   const labels=fusionMilestones;
   milestones.replaceChildren(...labels.map((label,j)=>{const li=document.createElement('li');li.textContent=label;if(j===s.step){li.className='current';li.setAttribute('aria-current','step')}return li}));
  }
@@ -49,6 +49,18 @@ function updateCopy(i){
  currentIndex=i;
  for(let j=i;j<Math.min(scenes.length,i+4);j++)preload(scenes[j].asset);
 }
+// A scroll-driven band of bubbles bridges the fusion campus and the profile canvas.
+const bubbleVeil = document.createElement('div');
+bubbleVeil.className = 'bubble-veil';
+bubbleVeil.setAttribute('aria-hidden', 'true');
+for (let i = 0; i < 120; i++) {
+ const bubble = document.createElement('i');
+ bubble.style.left = ((i * 61.83) % 100) + '%';
+ bubble.style.top = ((i * 37.17 + i * i * .13) % 100) + '%';
+ bubble.style.width = (4 + (i * 17) % 19) + 'px';
+ bubbleVeil.append(bubble);
+}
+screen.insertBefore(bubbleVeil, copy);
 const clamp=x=>Math.max(0,Math.min(1,x));const ease=x=>x*x*(3-2*x);
 function draw(){
  raf=0;const y=scrollY;const unit=clamp(y/(total*viewport))*total;
@@ -60,6 +72,9 @@ function draw(){
  if(i<scenes.length-1)renderLayer(layers[1],scenes[i+1]);
  layers[0].style.opacity=reduced.matches?(mix>.5?0:1):1;
  layers[1].style.opacity=i===scenes.length-1?0:reduced.matches?(mix>.5?1:0):mix;
+ const bubbleProgress = i === scenes.length-1 && !reduced.matches ? local : 0;
+ bubbleVeil.style.opacity = String(Math.sin(Math.PI * bubbleProgress));
+ bubbleVeil.style.transform = `translateY(${-12 * bubbleProgress}%)`;
  if(i===scenes.length-1){screen.style.background='transparent';layers[0].style.opacity=reduced.matches?(local>.5?0:1):1-ease(clamp((local-.15)/.7));screen.querySelector('.story-controls').style.opacity=String(1-ease(local));}
  else{screen.style.background='#000';screen.querySelector('.story-controls').style.opacity='1';}
  if(active!==currentIndex)updateCopy(active);
