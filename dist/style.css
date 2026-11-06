@@ -126,7 +126,7 @@ html{scroll-padding-top:0}.particle-field{position:fixed;inset:0;z-index:-1}.res
 .screen.is-paper .scene-layer.paper svg { mask-image: none; }
 .scene-layer.paper { background: transparent; }
 .screen.is-timeline .scene-copy {
-  bottom: 202px;
+  bottom: 178px;
 }
 .screen.is-timeline .scene-copy .eyebrow {
   margin: .65rem 0 0;
