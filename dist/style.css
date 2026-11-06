@@ -153,3 +153,13 @@ html{scroll-padding-top:0}.particle-field{position:fixed;inset:0;z-index:-1}.res
 .financial-table th { text-align: left; font-weight: normal; }
 .financial-table td { text-align: right; font-variant-numeric: tabular-nums; }
 .financial-table thead th { font-weight: bold; }
+@media (min-width: 701px) {
+  .scene-layer.stage > :is(svg, img) {
+    max-height: 80svh;
+    transform: translateY(-4svh);
+  }
+  .opening-note { bottom: 68px; }
+  .opening-note p { padding: 0 .4em; }
+  .opening-note span { margin-top: 8px; }
+  .opening-note b { margin-top: 3px; }
+}
