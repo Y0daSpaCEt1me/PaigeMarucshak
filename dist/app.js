@@ -35,6 +35,8 @@ $('read-model').addEventListener('click', () => modelDialog.showModal());
 function updateCopy(i){
  $('read-model').hidden = scenes[i].asset !== 'fusion-model';
  const s=scenes[i];title.textContent=s.title;desc.textContent=s.description;eyebrow.textContent=s.eyebrow??'';
+ if (s.timeline) desc.after(eyebrow);
+ else title.before(eyebrow);
  copy.className='scene-copy'+(s.kind==='closing'?' centered':'');
  screen.classList.toggle('needs-contrast',s.timeline||s.kind==='closing'||s.kind==='paper');
 
@@ -75,6 +77,10 @@ function draw(){
  if(i<scenes.length-1)renderLayer(layers[1],scenes[i+1]);
  layers[0].style.opacity=reduced.matches?(mix>.5?0:1):1;
  layers[1].style.opacity=i===scenes.length-1?0:reduced.matches?(mix>.5?1:0):mix;
+ if (!reduced.matches && (scenes[i].timeline || scenes[i+1]?.timeline)) {
+  layers[0].style.opacity = Math.max(0, 1 - 2 * mix);
+  layers[1].style.opacity = Math.max(0, 2 * mix - 1);
+ }
  const bubbleProgress = i === scenes.length-1 && !reduced.matches ? local : 0;
  bubbleVeil.style.opacity = String(Math.sin(Math.PI * bubbleProgress));
  bubbleVeil.style.transform = `translateY(${-12 * bubbleProgress}%)`;
