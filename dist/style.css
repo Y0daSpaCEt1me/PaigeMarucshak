@@ -134,3 +134,22 @@ html{scroll-padding-top:0}.particle-field{position:fixed;inset:0;z-index:-1}.res
 @media(max-width:700px) {
   .screen.is-timeline .scene-copy {bottom: 202px;}
 }
+.opening-note p {
+  display: inline-block;
+  margin: 0;
+  padding: .3em .9em;
+  background: rgba(0, 0, 0, .86);
+  border-radius: 3px;
+  color: #fff;
+  text-shadow: 0 1px 3px #000;
+}
+.model-inputs { display: grid; gap: .8rem; margin: 1.2rem 0; }
+.model-inputs label, .model-inputs input { display: block; width: 100%; }
+.model-inputs output { float: right; font-variant-numeric: tabular-nums; }
+.model-inputs input { margin: .5rem 0; accent-color: #296475; }
+.financial-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0 .7rem; }
+.financial-table caption { text-align: left; font-weight: bold; margin-bottom: .5rem; }
+.financial-table th, .financial-table td { padding: .4rem; border-bottom: 1px solid #b8aa8e; }
+.financial-table th { text-align: left; font-weight: normal; }
+.financial-table td { text-align: right; font-variant-numeric: tabular-nums; }
+.financial-table thead th { font-weight: bold; }

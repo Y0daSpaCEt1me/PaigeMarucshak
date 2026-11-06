@@ -235,7 +235,49 @@
     <h3>Annual electricity sales · about $701 million</h3>
     <p>A 1,000 MW plant operating at 80% capacity over 8,760 hours sells 7,008,000 MWh. At $100 per MWh, that yields $700.8 million in revenue.</p>
     <p>Research and installed capital are separate. Annual costs exclude ongoing research, depreciation, financing and taxes.</p>
+    <h3>Who pays for the first plant?</h3>
+    <p>In this scenario, sponsors supply $2B of equity for ten years of research and another $3.8B for construction and reserves. A private lender advances <strong>$2.4B</strong> at commissioning, once the plant passes its acceptance tests. Sponsors bridge that amount during construction and recover the advance at closing. They carry the risk that the plant never qualifies for the loan.</p>
+    <p>The permanent financing totals $8.2B: $2B spent on research, $6B invested in the plant and $200M held in cash. The loan finances 40% of installed plant cost. The example assumes no grants, fees or construction-period interest.</p>
+    <h3>The private debt agreement</h3>
+    <p>The assumed loan has a fixed 7% rate and a 20-year term. Equal year-end principal payments of $120M make the first payment the largest: $168M of interest plus $120M of principal. In year two, interest falls to $159.6M on the remaining $2.28B. Total interest over the term is $1.764B if every payment arrives on schedule.</p>
+    <h3>What if the chamber needs more repairs?</h3>
+    <p>Move the capacity factor to simulate downtime, or change the price buyers pay. The controls recalculate the first full operating year. Net capacity is 1,000 MW. Annual operating costs stay fixed for this sensitivity test.</p>
+    <div class="model-inputs">
+      <label>Net capacity factor <output id="use-label" for="plant-use">80%</output><input type="range" id="plant-use" min="60" max="95" step="1" value="80"></label>
+      <label>Electricity price <output id="price-label" for="power-price">$100/MWh</output><input type="range" id="power-price" min="70" max="140" step="1" value="100"></label>
+    </div>
+    <p>Annual net generation: <strong id="generation"></strong> MWh.</p>
+    <table class="financial-table"><caption>Year-one earnings and cash flow · USD millions</caption>
+      <thead><tr><th scope="col">Account</th><th scope="col">Year 1</th></tr></thead><tbody>
+      <tr><th>Electricity sales</th><td data-figure="revenue"></td></tr>
+      <tr><th>Cash operating costs</th><td>200.0</td></tr>
+      <tr><th>Operating earnings before depreciation (EBITDA)</th><td data-figure="ebitda"></td></tr>
+      <tr><th>Depreciation</th><td>200.0</td></tr>
+      <tr><th>Interest expense</th><td>168.0</td></tr>
+      <tr><th>Income before tax</th><td data-figure="pretax"></td></tr>
+      <tr><th>Cash tax at an assumed 25%</th><td data-figure="tax"></td></tr>
+      <tr><th>Net income</th><td data-figure="income"></td></tr>
+      <tr><th>Cash available for debt service¹</th><td data-figure="available"></td></tr>
+      <tr><th>Interest and principal paid</th><td>288.0</td></tr>
+      <tr><th>Cash retained after debt service</th><td data-figure="retainedCash"></td></tr>
+      </tbody></table>
+    <p>¹ EBITDA less cash taxes and $60M for replacement equipment. Depreciation spreads the original plant cost evenly over 30 years. Replacements enter service at year-end. The simplified model assumes no working-capital change, payouts, loss carryforwards or additional research expense in year one.</p>
+    <p><strong>Debt-service coverage: <span id="coverage"></span></strong> · <span id="coverage-status"></span></p>
+    <p>At $100/MWh, each percentage point of capacity factor is 87,600 MWh, or $8.76M in annual sales. Passing the assumed lender test takes about 77.1% capacity under these assumptions. That gives an 80% plant roughly eleven extra days of downtime before it falls below the test.</p>
+    <table class="financial-table"><caption>Illustrative balance sheet · USD millions</caption>
+      <thead><tr><th scope="col">Account</th><th scope="col">At commissioning</th><th scope="col">End of year 1</th></tr></thead><tbody>
+      <tr><th>Cash and reserves</th><td>200.0</td><td data-figure="closingCash"></td></tr>
+      <tr><th>Plant and equipment, net</th><td>6,000.0</td><td data-figure="closingPlant"></td></tr>
+      <tr><th>Total assets</th><td>6,200.0</td><td data-figure="assets"></td></tr>
+      <tr><th>Private debt · total liabilities</th><td>2,400.0</td><td data-figure="closingDebt"></td></tr>
+      <tr><th>Paid-in equity</th><td>5,800.0</td><td>5,800.0</td></tr>
+      <tr><th>Accumulated earnings (deficit)</th><td>−2,000.0</td><td data-figure="accumulated"></td></tr>
+      <tr><th>Total equity</th><td>3,800.0</td><td data-figure="closingEquity"></td></tr>
+      <tr><th>Total liabilities and equity</th><td>6,200.0</td><td data-figure="financing"></td></tr>
+      </tbody></table>
+    <p>The $2B of research was expensed before commissioning, which explains the opening deficit. In year one, profit increases equity, principal repayments reduce the loan, and replacement spending increases the carrying value of the plant before depreciation.</p>
   </dialog>
+  <script type="module" src="finance.js"></script>
   <noscript><style>.story{height:100svh}.scene-layer{opacity:1}.story-controls{display:none}</style><p style="padding:30px">Enable JavaScript to explore the scroll story, or continue to the résumé below.</p></noscript>
 </body>
 </html>
