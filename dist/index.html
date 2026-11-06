@@ -24,7 +24,7 @@
         <div class="scene-layer" id="layer-b"></div>
         <div class="shade" aria-hidden="true"></div>
         <div class="opening-note" id="opening-note"><p>A story about possibility.</p><span>Scroll to explore <b aria-hidden="true">↓</b></span></div>
-        <div class="scene-copy" id="scene-copy"><p class="eyebrow" id="scene-eyebrow"></p><h1 id="scene-title"></h1><p id="scene-description"></p></div>
+        <div class="scene-copy" id="scene-copy"><p class="eyebrow" id="scene-eyebrow"></p><h1 id="scene-title"></h1><p id="scene-description"></p><button id="read-model" hidden type="button">Read the financial model</button></div>
         <div class="timeline" id="timeline" hidden>
           <div class="timeline-heading"><span id="timeline-company"></span><span>Illustrative development path</span></div>
           <ol id="milestones"></ol>
@@ -63,7 +63,13 @@
 <h4>Dual-Enrolled Student</h4>
 <p class="entry-meta">Missouri University of Science and Technology · 2025–Present</p>
 <ul>
-<li>Completed Calculus I, II, and III with a 3.5 university GPA; Differential Equations and Linear Algebra planned for Spring 2027.</li>
+<li>Completed Calculus I, II, with a 3.5 university GPA; currently taking Calculus III; Differential Equations and Linear Algebra planned for Spring 2027.</li>
+</ul>
+<h4>Other Classes</h4>
+<ul><li>Completed “How Things Work: an Introduction to Physics” at age 13 through Coursera and received a certificate for it.</li>
+<li>Audited “Astrophysics: The Violent Universe” at age 13 through EdX</li>
+<li>Completed “Programming for Everybody (Getting Started with Python)” and “Python Data Structures” at age 14 through EdX and received certificates for both.</li>
+<li>Currently auditing “Introduction to Parallel Programming” senior level class at MS&amp;T.</li>
 </ul></article>
 <article class="resume-card glass-block" id="research" aria-labelledby="research-title"><span class="section-number">02 / Résumé</span><h3 id="research-title">Research experience</h3>
 <h4>Undergraduate Researcher</h4>
@@ -72,6 +78,9 @@
 <ul>
 <li>Tested the limits of the NPT barostat to get familiar with LAMMPS and the Mill, MS&amp;T’s local high performance computer.</li>
 <li>Used Linux, and C++</li>
+<li>Built LAMMPS simulations of face-centered cubic argon to study atomic motion during heating and cooling, including models with 2,048 atoms.</li>
+<li>Analyzed mean-squared displacement, pressure, and simulation cell dimensions to identify when diffusion slowed during cooling and distinguish solid-like behavior from changes in box shape.</li>
+<li>Developed Slurm batch scripts and Gnuplot workflows to compare thermostat settings and integration timesteps across runs, track temperature fluctuations, and export atomic trajectories for visualization in OVITO.</li>
 </ul>
 <h4>Undergraduate Researcher</h4>
 <p class="entry-meta">Missouri University of Science and Technology · Summer 2025</p>
@@ -91,6 +100,10 @@
 <ul>
 <li>Predicting the locations of the Lithium ions vacancies by creating a small neural network based on the configuration of PS4</li>
 <li>Optimizing the PS4 to make the Li ions transfer easier. This will help to make charging batteries quicker, and their lifetime will last longer.</li>
+<li>Developed Python models of β-Li₃PS₄ to investigate lithium-site occupancy and vacancy arrangements for solid-state battery electrolytes.</li>
+<li>Reconstructed neutron-diffraction crystal structures and built interactive 3D visualizations using ASE and PyXtal.</li>
+<li>Implemented Monte Carlo simulations with a MACE interatomic potential to study temperature-dependent lithium occupancies and relative free energies.</li>
+<li>Built simulation validation, convergence diagnostics, uncertainty estimation, and checkpointing workflows.</li>
 </ul></article>
 <article class="resume-card glass-block" id="finance" aria-labelledby="finance-title"><span class="section-number">03 / Résumé</span><h3 id="finance-title">Finance &amp; investment</h3>
 <h4>Independent Investor and Market Researcher</h4>
@@ -115,11 +128,17 @@
 </ul>
 <h4>Quantitative Finance Class</h4>
 <p class="entry-meta">Stevens Institute of Technology · July 2026</p>
-<ul><li>Took a quantitative finance class through Steven’s Institute of Technology and received Bloomberg Market Concepts certification and a Capital IQ certification.</li></ul>
+<ul><li>Took a quantitative finance class through Stevens Institute of Technology and received Bloomberg Market Concepts certification and a Capital IQ certification.</li></ul>
 <h4>Constellation Energy Investment Pitch</h4>
 <p class="entry-meta">Perplexity Stock Pitch Competition</p>
 <ul>
+<li>Created a website, with the help of Perplexity Computer, to pitch why someone should invest in CEG.</li>
 <li>Connected nuclear-generation assets, AI-driven electricity demand, valuation, catalysts, market expectations, and risks in a technical-commercial investment thesis.</li>
+</ul>
+<h4>ChatGPT Portfolio</h4>
+<p class="entry-meta">March 16, 2026–Present</p>
+<ul><li>Had ChatGPT create its own portfolio for long term gains, with a few restrictions: Only $350 max per new trading day, no forced trades, focus on high-conviction step ups.</li>
+<li>Currently has a 5.51% gain with SPY, NVDA, BRK-B, GOOG, MRK, and XLE</li>
 </ul></article>
 <article class="resume-card glass-block" id="projects" aria-labelledby="projects-title"><span class="section-number">04 / Résumé</span><h3 id="projects-title">Technology &amp; design projects</h3>
 <h4>FrontierTech Atlas</h4>
@@ -132,8 +151,12 @@
 <h4>Personal Résumé Website</h4>
 <p class="entry-meta"><a href="https://paigemaruschak.vercel.app/">paigemaruschak.vercel.app</a></p>
 <ul>
-<li>Building an interactive portfolio that follows a particles-to-markets story, from particle physics and fusion energy to quantum computing and technology commercialization.</li>
+<li>Built an interactive portfolio that follows a particles-to-markets story, from particle physics and fusion energy to quantum computing and technology commercialization.</li>
 <li>Will allow visitors to view the résumé through Physics, Finance, and combined Physics × Finance perspectives.</li>
+</ul>
+<h4>Science Olympiad Note Generator</h4>
+<p class="entry-meta">Retired</p>
+<ul><li>Built a Science Olympiad Note Generator, to gather the data quickly and efficiently.</li>
 </ul>
 <h4>Binary Clock</h4>
 <p class="entry-meta">Engineering Project · In Development</p>
@@ -172,6 +195,14 @@
 <p class="entry-meta">Missouri S&amp;T</p>
 <ul>
 <li>Serve as lead programmer and support CAD development for a myoelectric prosthetic arm intended to reduce weight, increase functionality, and improve affordability.</li>
+</ul>
+<h4>Immerse Education Essay Competition</h4>
+<p class="entry-meta">International Competition · 2 Years</p>
+<ul><li>Participated in Immerse Education essay competition.</li>
+<li>First prompt was about “How Physics Helps Create Sustainable Energy Solutions”; first exposure to alternative energies</li>
+<li>Looked at artificial photosynthesis, quantum dot solar cells, and nuclear fusion</li>
+<li>Second prompt was “What is the Significance of the search for the Theory of Everything?”</li>
+<li>Looked at global collaboration and prosperity, new technologies to improve our lives, and answers to deep philosophical questions</li>
 </ul></article>
 <article class="resume-card glass-block" id="service" aria-labelledby="service-title"><span class="section-number">07 / Résumé</span><h3 id="service-title">Community service</h3>
 <h4>Childcare Volunteer</h4>
@@ -191,6 +222,20 @@
       </div>
     </section>
   </main>
+  <dialog id="model-details" aria-labelledby="model-heading">
+    <form method="dialog"><button autofocus>Close</button></form>
+    <h2 id="model-heading">Fusion financial model</h2>
+    <p>Illustrative assumptions in US dollars.</p>
+    <h3>Research budget over ten years · $2 billion</h3>
+    <p>Laser research: $800 million. Target development: $600 million. Materials research: $600 million.</p>
+    <h3>Installed plant cost · $6 billion</h3>
+    <p>Reactor and lasers: $3.6 billion. Turbine and cooling: $1.2 billion. Site, grid connection and contingency: $1.2 billion.</p>
+    <h3>Annual operating costs · $200 million</h3>
+    <p>Fuel targets: $80 million. Maintenance: $80 million. Staff and utilities: $40 million.</p>
+    <h3>Annual electricity sales · about $701 million</h3>
+    <p>A 1,000 MW plant operating at 80% capacity over 8,760 hours sells 7,008,000 MWh. At $100 per MWh, that yields $700.8 million in revenue.</p>
+    <p>Research and installed capital are separate. Annual costs exclude ongoing research, depreciation, financing and taxes.</p>
+  </dialog>
   <noscript><style>.story{height:100svh}.scene-layer{opacity:1}.story-controls{display:none}</style><p style="padding:30px">Enable JavaScript to explore the scroll story, or continue to the résumé below.</p></noscript>
 </body>
 </html>

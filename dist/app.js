@@ -30,7 +30,10 @@ function renderLayer(el,s){
  }
  svg.append(image);el.append(svg);el.dataset.asset=s.asset;el.dataset.crop=s.crop??1;
 }
+const modelDialog = $('model-details');
+$('read-model').addEventListener('click', () => modelDialog.showModal());
 function updateCopy(i){
+ $('read-model').hidden = scenes[i].asset !== 'fusion-model';
  const s=scenes[i];title.textContent=s.title;desc.textContent=s.description;eyebrow.textContent=s.eyebrow??'';
  copy.className='scene-copy'+(s.kind==='closing'?' centered':'');
  screen.classList.toggle('needs-contrast',s.timeline||s.kind==='closing'||s.kind==='paper');
