@@ -1,5 +1,16 @@
 # November 8 visual revision
 
+## Follow-up edits
+
+Built-in image generation produced these project assets, saved under `dist/assets/`:
+
+- `yb-ion-v3.webp`, using `yb-ion-v2.webp`: Edit this ytterbium ion image only in the nucleus texture: preserve the many ivory protons and blue-gray neutrons, exact composition, black background, blue electron cloud, widescreen dimensions. Give EACH nucleon a softly fuzzy luminous surface and wispy fine energy haze around its edge, like a quantum probability cloud rather than polished hard marbles. Nucleus stays clearly recognizable with individual protons and neutrons, but glows softly with delicate ivory and blue filaments and diffused light between particles. Do not blur entire image. No text or labels.
+- `quantum-prototype-v3.webp`, using `quantum-prototype.webp`: Adapt the original milestone artwork while preserving its cinematic lakeside city at blue hour, warm gold laboratory lighting, camera composition and detailed premium 3D look. Replace the hanging gold dilution refrigerator with a trapped-ion prototype: a stainless vacuum chamber with optical viewports and a visible gold electrode trap, precision optical table and violet laser optics. Keep researchers and electronics. Remove the entire bottom timeline, all labels and all text; extend the laboratory image to fill the full 16:9 frame. No UI or borders. Distinct working prototype milestone scene, no giant chandelier.
+- `quantum-scale-v3.webp`, using `quantum-scale.webp`: Adapt this original scalable-system milestone composition. Preserve the rows of systems, deep perspective, lake and blue-hour skyline through windows, gold lighting and high quality cinematic rendering. Replace each hanging superconducting gold refrigerator with modular trapped-ion computing racks containing stainless vacuum chambers with round viewports, optics, laser control and electronics. Remove bottom timeline and all text entirely; extend laboratory floor and scene to fill full 16:9 image. No labels or UI. Distinct scale-up facility illustration.
+- `quantum-qubit-v3.webp`, using `quantum-qubit.webp`: Adapt original validated-qubit milestone artwork. Preserve original close-up composition, gold and steel detail, rich warm lighting, blue-hour city lake in background and monitor on right. Replace superconducting gold chandelier and chip with a close-up of a trapped-ion vacuum chamber optical viewport, precision gold electrode chip inside, laser optics and coherent blue-white ion fluorescence. Beautiful dimensional scientifically inspired laboratory illustration. Remove bottom timeline and all typography and extend scene to fill entire 16:9 frame. No UI, no text, no duplicated timeline. Different camera and apparatus from wide lab and ion-chain scenes.
+
+The original `quantum-commercial.webp` is reused for the final milestone with a runtime crop excluding its embedded timeline.
+
 Generated with the built-in image-generation tool. Final web assets are in `dist/assets/`; original generated PNGs are preserved in the Codex generated-images folder. All science images are conceptual illustrations, not to scale. Financial text remains live HTML, not generated image text.
 
 ## Prompt set and final assets
