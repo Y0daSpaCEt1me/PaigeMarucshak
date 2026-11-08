@@ -1,4 +1,4 @@
-import {scenes,fusionMilestones} from './scenes.js';
+import {scenes,fusionMilestones,quantumMilestones,createScenes} from './scenes.js';
 history.scrollRestoration='manual';
 if(!location.hash)scrollTo(0,0);
 const assets=await fetch('assets.json').then(r=>{if(!r.ok)throw Error('Image manifest unavailable');return r.json()});
@@ -8,7 +8,7 @@ const copy=$('scene-copy'),title=$('scene-title'),desc=$('scene-description'),ey
 const timeline=$('timeline'),milestones=$('milestones'),resume=$('resume');
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 let viewport=innerHeight,currentIndex=-1,raf=0,paused=reduced.matches,particleEngine=null;
-const offsets=[];let total=0;scenes.forEach(s=>{offsets.push(total);total+=s.units});
+const offsets=[];let total=0;function measure(){offsets.length=0;total=0;scenes.forEach(s=>{offsets.push(total);total+=s.units});}measure();
 function resize(){viewport=innerHeight;story.style.height=`${(total+1)*viewport}px`;schedule();}
 const loaded=new Map();
 function preload(key){if(loaded.has(key))return loaded.get(key);const im=new Image();im.src=assets[key].file;const p=im.decode().catch(()=>{});loaded.set(key,p);return p;}
@@ -31,9 +31,20 @@ function renderLayer(el,s){
  svg.append(image);el.append(svg);el.dataset.asset=s.asset;el.dataset.crop=s.crop??1;
 }
 const modelDialog = $('model-details');
-$('read-model').addEventListener('click', () => modelDialog.showModal());
+screen.append(modelDialog);
+const quantumLedger=$('quantum-ledger');screen.append(quantumLedger);
+let route='fusion';
+const choice=document.createElement('div');choice.className='route-choice';choice.hidden=true;
+choice.innerHTML='<p>Two paths from the same building blocks.</p><button data-route="fusion">Explore fusion →</button><button data-route="quantum">Explore quantum computing →</button>';
+copy.append(choice);
+const switcher=document.createElement('button');switcher.className='route-switch';switcher.textContent='Change route';switcher.hidden=true;screen.append(switcher);switcher.onclick=()=>go(3);
+choice.querySelectorAll('button').forEach(b=>b.onclick=()=>{route=b.dataset.route;scenes.splice(0,scenes.length,...createScenes(route));measure();currentIndex=-1;resize();updateTranscript();go(4);});
+const qubit=document.createElement('div');qubit.className='qubit-control';qubit.hidden=true;qubit.innerHTML='<button type="button">Apply a half pulse</button><output>Prepared in |0⟩ · P(0) = 100%</output><small>Idealized probability demonstration</small>';copy.append(qubit);
+let superposition=false;qubit.querySelector('button').onclick=()=>{superposition=!superposition;qubit.querySelector('button').textContent=superposition?'Reset to |0⟩':'Apply a half pulse';qubit.querySelector('output').textContent=superposition?'Superposition · P(0) = 50% · P(1) = 50%':'Prepared in |0⟩ · P(0) = 100%';};
 function updateCopy(i){
- $('read-model').hidden = scenes[i].asset !== 'fusion-model';
+ $('read-model').hidden = true;
+ choice.hidden=!scenes[i].choice;switcher.hidden=i<4;qubit.hidden=scenes[i].interaction!=='qubit';
+ modelDialog.hidden=scenes[i].ledger!=='fusion';quantumLedger.hidden=scenes[i].ledger!=='quantum';screen.classList.toggle('is-ledger',!!scenes[i].ledger);screen.classList.toggle('is-choice',!!scenes[i].choice);
  const s=scenes[i];title.textContent=s.title;desc.textContent=s.description;eyebrow.textContent=s.eyebrow??'';
  if (s.timeline) desc.after(eyebrow);
  else title.before(eyebrow);
@@ -44,8 +55,8 @@ function updateCopy(i){
  $('opening-note').hidden=s.kind!=='stage';
  timeline.hidden=!s.timeline;
  if(s.timeline){
-  $('timeline-company').textContent='Fusion / Investment milestones';
-  const labels=fusionMilestones;
+  $('timeline-company').textContent=(s.timeline==='quantum'?'Quantum':'Fusion')+' / Investment milestones';
+  const labels=s.timeline==='quantum'?quantumMilestones:fusionMilestones;
   milestones.replaceChildren(...labels.map((label,j)=>{const li=document.createElement('li');li.textContent=label;if(j===s.step){li.className='current';li.setAttribute('aria-current','step')}return li}));
  }
  document.querySelectorAll('[data-chapter]').forEach(b=>{if(+b.dataset.chapter===s.chapter)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current')});
@@ -110,6 +121,6 @@ resize();draw();
 const initialTarget=location.hash?document.getElementById(decodeURIComponent(location.hash.slice(1))):null;
 if(initialTarget)requestAnimationFrame(()=>initialTarget.scrollIntoView({behavior:'instant'}));
 // A readable equivalent for assistive technology, without announcing on every scroll.
-const transcript=$('story-transcript');scenes.forEach(s=>{if(!s.title)return;const h=document.createElement('h2');h.textContent=s.title;const p=document.createElement('p');p.textContent=s.description;transcript.append(h,p)});
+function updateTranscript(){const transcript=$('story-transcript');transcript.replaceChildren();scenes.forEach(s=>{if(!s.title)return;const h=document.createElement('h2');h.textContent=s.title;const p=document.createElement('p');p.textContent=s.description;transcript.append(h,p)});}updateTranscript();
 // Decode the next scenes early; keep downloads incremental on slower connections.
 preload('stage');preload('quarks');

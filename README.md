@@ -9,3 +9,5 @@ The official resume is dist/Paige_Maruschak_Resume.pdf, supplied November 1, 202
 The 26-scene story retains the fusion timeline and closing intersection/particle scenes. White cards have translucent surfaces and sharp corners; the visible pause control and final orange progress line are removed. OS reduced-motion preferences remain supported.
 
 Do not publish through Sites. Historical .openai metadata is retained only for reference.
+
+The neutron scene offers fusion and ytterbium-171 trapped-ion quantum routes. Financial models are full-slide HTML sheets. Quantum budgets are illustrative teaching assumptions. Quibit pulse probabilities and financial scenario controls are interactive.

@@ -38,3 +38,8 @@ function updateStatements() {
 }
 model.addEventListener('input', updateStatements);
 updateStatements();
+
+model.querySelectorAll('[data-scenario]').forEach(button=>button.addEventListener('click',()=>{[utilization.value,price.value]=button.dataset.scenario.split(',');updateStatements();}));
+const customers=document.querySelector('#quantum-customers');
+function updateQuantum(){const revenue=Number(customers.value),burn=25-revenue;document.querySelector('#quantum-customer-label').textContent=revenue;document.querySelector('#quantum-revenue').textContent=revenue.toFixed(1);document.querySelector('#quantum-cash').textContent=(revenue-25).toFixed(1);document.querySelector('#quantum-runway').textContent=burn>0?`Cash runway: ${(75/burn).toFixed(1)} years at $${burn}M annual cash use.`:burn===0?'Cash operating break-even: customer revenue matches the assumed annual cash costs.':`$${-burn}M annual cash surplus before excluded costs.`;}
+customers.addEventListener('input',updateQuantum);updateQuantum();

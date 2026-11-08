@@ -222,9 +222,9 @@
       </div>
     </section>
   </main>
-  <dialog id="model-details" aria-labelledby="model-heading">
-    <form method="dialog"><button autofocus>Close</button></form>
-    <h2 id="model-heading">Fusion financial model</h2>
+  <section id="model-details" class="ledger" aria-labelledby="model-heading" tabindex="0" hidden>
+    <p class="ledger-kicker">Investment notebook / Fusion / USD</p>
+    <h2 id="model-heading">Fusion financial model</h2><p class="ledger-intro">From research to a working power plant. Scroll this sheet to explore the full statements.</p><div class="scenario-buttons" aria-label="Fusion scenarios"><button data-scenario="60,70">More downtime</button><button data-scenario="80,100">Base case</button><button data-scenario="95,140">Strong performance</button></div>
     <p>Illustrative assumptions in US dollars.</p>
     <h3>Research budget over ten years · $2 billion</h3>
     <p>Laser research: $800 million. Target development: $600 million. Materials research: $600 million.</p>
@@ -276,7 +276,20 @@
       <tr><th>Total liabilities and equity</th><td>6,200.0</td><td data-figure="financing"></td></tr>
       </tbody></table>
     <p>The $2B of research was expensed before commissioning, which explains the opening deficit. In year one, profit increases equity, principal repayments reduce the loan, and replacement spending increases the carrying value of the plant before depreciation.</p>
-  </dialog>
+  </section>
+
+<section id="quantum-ledger" class="ledger" aria-labelledby="quantum-model-heading" tabindex="0" hidden>
+<p class="ledger-kicker">Investment notebook / Trapped ions / USD</p><h2 id="quantum-model-heading">A quantum company, on paper.</h2>
+<p class="ledger-intro">An illustrative teaching scenario—not a company valuation or a forecast.</p>
+<div class="ledger-summary"><div><small>Capital raised</small><strong>$100M</strong></div><div><small>Equipment & setup</small><strong>$25M</strong></div><div><small>Cash left to operate</small><strong>$75M</strong></div></div>
+<h3>1. Build the system</h3><p>Assume $15M for traps, lasers and control equipment, and $10M for facilities and integration. Equity funds the full $100M; this example has no debt.</p>
+<h3>2. Pay for the work</h3><table class="financial-table"><caption>Annual cash operating budget · USD millions</caption><tbody><tr><th>People and research</th><td>18</td></tr><tr><th>Facilities, utilities and service</th><td>4</td></tr><tr><th>Software, sales and administration</th><td>3</td></tr><tr><th>Total annual cash costs</th><td>25</td></tr></tbody></table>
+<h3>3. Explore customer demand</h3><p>Assume each customer contract brings in $1M per year. Change the number of contracts to see how much cash the company uses. Costs stay fixed in this simplified model.</p>
+<label for="quantum-customers">Annual customer contracts <output id="quantum-customer-label">5</output></label><input id="quantum-customers" type="range" min="0" max="30" value="5">
+<table class="financial-table"><caption>Annual cash picture · USD millions</caption><tbody><tr><th>Customer revenue</th><td id="quantum-revenue">5</td></tr><tr><th>Cash operating costs</th><td>25</td></tr><tr><th>Cash remaining / (used) per year</th><td id="quantum-cash">−20</td></tr></tbody></table>
+<p id="quantum-runway" aria-live="polite"></p><p>Runway means how long the opening $75M lasts at this constant cash-use rate. This excludes taxes, replacement equipment, working capital and future funding. Cash break-even here is not accounting profit or proof of commercial viability.</p>
+<h3>4. Release funding against evidence</h3><p>Stable qubits → integrated prototype → error correction → useful customer results. Each milestone should reduce a specific technical or commercial uncertainty before more capital is committed.</p>
+<p>Science reference: <a href="https://qiti.iqc.uwaterloo.ca/processors/" target="_blank" rel="noopener">University of Waterloo’s trapped-ion processors ↗</a></p></section>
   <script type="module" src="finance.js"></script>
   <noscript><style>.story{height:100svh}.scene-layer{opacity:1}.story-controls{display:none}</style><p style="padding:30px">Enable JavaScript to explore the scroll story, or continue to the résumé below.</p></noscript>
 </body>
