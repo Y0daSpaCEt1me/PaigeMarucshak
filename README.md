@@ -6,8 +6,8 @@ Run locally with `python -m http.server 8766 --directory dist`.
 
 The official resume is dist/Paige_Maruschak_Resume.pdf, supplied November 1, 2026. resume.html displays and downloads that exact PDF. The profile retains its matching resume text. Books, podcasts, and puzzle features are deferred.
 
-The 26-scene story retains the fusion timeline and closing intersection/particle scenes. White cards have translucent surfaces and sharp corners; the visible pause control and final orange progress line are removed. OS reduced-motion preferences remain supported.
+The branching story retains the fusion timeline and closing intersection/particle scenes. Financial content is paginated to fit the viewport as consecutive full-screen drafting-paper slides; the scene count adapts to the viewport. OS reduced-motion preferences remain supported.
 
 Do not publish through Sites. Historical .openai metadata is retained only for reference.
 
-The neutron scene offers fusion and ytterbium-171 trapped-ion quantum routes. Financial models are full-slide HTML sheets. Quantum budgets are illustrative teaching assumptions. Quibit pulse probabilities and financial scenario controls are interactive.
+The neutron scene requires a choice between fusion and ytterbium-171 trapped-ion quantum routes. Science navigation restarts the choice; there is no route-switch button. Quantum budgets are illustrative teaching assumptions. Qubit pulse probabilities and financial scenario controls are interactive. See ARTWORK.md for the generated replacement assets and prompts.

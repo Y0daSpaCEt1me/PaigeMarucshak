@@ -29,25 +29,25 @@ const fusionScenes=[
  {asset:'fusion-campus',chapter:4,kind:'dissolve',units:.85,title:'',description:''}
 ];
 
-export const quantumMilestones=['Stable qubits','Working prototype','Error correction','Useful computing'];
+export const quantumMilestones=['Validated qubit performance','Error-corrected prototype','Scalable system','Commercial deployment'];
 const quantumScience=[
- {asset:'yb-ion',title:'A different atom. A different possibility.',eyebrow:'Ytterbium-171 / ¹⁷¹Yb⁺',description:'70 protons, 101 neutrons, and 69 electrons. Removing one electron leaves a positively charged ion. This is a different element—not a deuterium atom turning into ytterbium.'},
- {asset:'ion-trap',title:'Hold an atom without touching it.',eyebrow:'An electromagnetic trap',description:'Electric fields confine the ions in a vacuum. Lasers cool their motion so they can be controlled precisely.'},
- {asset:'ion-qubit',title:'Two states become one qubit.',eyebrow:'Information inside an ion',description:'Two internal energy states encode 0 and 1. A controlled pulse can prepare a superposition. Measurement returns one result, with probabilities set by that state.',interaction:'qubit'},
- {asset:'ion-chain',title:'Let the qubits work together.',eyebrow:'From one ion to a processor',description:'Laser-driven interactions use the ions’ shared motion to entangle qubits. Repeated checks and error correction are needed to protect a longer computation.'},
+ {asset:'yb-ion-v2',kind:'quantum-science',title:'A different atom. A different possibility.',eyebrow:'Ytterbium-171 / ¹⁷¹Yb⁺',description:'70 protons, 101 neutrons, and 69 electrons. Removing one electron leaves a positively charged ion. The ivory protons and blue-gray neutrons form a much larger nucleus. Illustration not to scale.'},
+ {asset:'ion-trap-v2',kind:'quantum-science',title:'Hold an atom without touching it.',eyebrow:'An electromagnetic trap',description:'Electric fields confine the ions in a vacuum. Lasers cool their motion so they can be controlled precisely.'},
+ {asset:'ion-trap-v2',kind:'quantum-science',title:'Two states become one qubit.',eyebrow:'Information inside an ion',description:'Two internal energy states encode 0 and 1. A controlled pulse can prepare a superposition. Measurement returns one result, with probabilities set by that state.',interaction:'qubit'},
+ {asset:'ion-chain-v2',kind:'quantum-science',title:'Let the qubits work together.',eyebrow:'From one ion to a processor',description:'Laser-driven interactions use the ions’ shared motion to entangle qubits. Repeated checks and error correction are needed to protect a longer computation.'},
  {asset:'quantum-campus',title:'Build a company around the science.',eyebrow:'02 / One possible future',description:'A quantum computing company brings together processors, control electronics, software, and people.',chapter:2},
- {asset:'quantum-arrival',title:'Powered by a fusion company.',eyebrow:'Electricity flows into this future',description:'In this imagined future, a fusion plant supplies electricity to the quantum company’s lasers, controls, cooling, and facilities. Quantum computers do not require fusion power.',chapter:2},
+ {asset:'fusion-campus',title:'Powered by a fusion company.',eyebrow:'Electricity flows into this future',description:'In this imagined future, a fusion plant supplies electricity to the quantum company’s lasers, controls, cooling, and facilities. Quantum computers do not require fusion power.',chapter:2},
  {asset:'quantum-campus',title:'One Possible Future',description:'',eyebrow:'A vision, not a forecast',chapter:2,kind:'closing'},
- {asset:'quantum-outline',title:'What would it take to build this?',description:'Start with the processor. Then fund the engineering that makes it reliable, scalable, and useful.',eyebrow:'03 / Building that future',chapter:3},
+ {asset:'quantum-paper-v2',kind:'architecture',title:'What would it take to build this?',description:'Start with the processor. Then fund the engineering that makes it reliable, scalable, and useful.',eyebrow:'03 / Building that future',chapter:3},
  {asset:'quantum-model',title:'A quantum company, on paper.',description:'',chapter:3,kind:'ledger',ledger:'quantum'},
- ...quantumMilestones.map((title,step)=>({asset:['quantum-qubit','quantum-prototype','quantum-scale','quantum-commercial'][step],title,step,timeline:'quantum',chapter:3,eyebrow:['First: control one ion','Then: connect the system','Next: protect the information','Finally: prove customer value'][step],description:['Prepare, control, and measure qubits repeatedly. Measure error rates before expanding the hardware.','Integrate the trap, lasers, electronics, and software. A working demonstration is not yet a profitable product.','Demonstrate that encoded information becomes more reliable as protection increases. More physical qubits alone do not prove progress.','Show a useful result at a cost customers will pay. Technical milestones and commercial demand must both hold up.'][step]}))
-].map(s=>({chapter:1,kind:'micro',units:.9,...s}));
+ ...quantumMilestones.map((title,step)=>({asset:['ion-trap-v2','ion-chain-v2','quantum-lab','quantum-campus-v2'][step],kind:'quantum-milestone',title,step,timeline:'quantum',chapter:3,eyebrow:['First: demonstrate reliable control','Then: protect quantum information','Next: scale the complete system','Finally: prove customer value'][step],description:['Prepare, control, and measure qubits repeatedly. Measure error rates before expanding the hardware.','Combine physical qubits into an error-corrected prototype. Test whether protection reduces errors in the encoded information.','Expand the trap, optics, controls, and software while preserving performance. More physical qubits alone do not prove a scalable computer.','Show a useful result at a cost customers will pay. Technical milestones and commercial demand must both hold up.'][step]}))
+].map(s=>({chapter:1,kind:'full',units:.9,...s}));
 export function createScenes(route='fusion') {
  const shared=fusionScenes.slice(0,4).map(s=>({...s}));
  shared[3].description='Protons and neutrons help make atomic nuclei. From here, choose which possibility to explore.';
  shared[3].choice=true;
  const ending=fusionScenes.slice(-3).map(s=>({...s,asset:route==='quantum'?'quantum-campus':s.asset}));
  const middle=route==='quantum'?quantumScience:fusionScenes.slice(4,-3).map(s=>s.asset==='fusion-model'?{...s,kind:'ledger',ledger:'fusion'}:s);
- return [...shared,...middle,...ending];
+ return [...shared,...middle,...ending].map(s=>s.asset==='fusion-paper'?{...s,asset:'fusion-paper-v2',kind:'architecture'}:s.asset==='quantum-campus'?{...s,asset:'quantum-campus-v2'}:s);
 }
 export const scenes=createScenes();
