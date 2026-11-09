@@ -8,6 +8,11 @@ export function preparePaperSlides(fusion,quantum){
  const pages={fusion:[],quantum:[]};
  function paginate(){
   for(const [name,root] of Object.entries(models)){
+   if(name==='quantum'){
+    const sheets=sources.get(root);root.replaceChildren(...sheets);pages[name]=sheets;
+    sheets.forEach((sheet,i)=>{sheet.classList.add('paper-page');if(!sheet.querySelector('.paper-folio')){const footer=document.createElement('p');footer.className='paper-folio';footer.textContent=`${i+1} / ${sheets.length} · Scroll to continue`;sheet.append(footer);}sheet.hidden=true;});
+    root.hidden=true;continue;
+   }
    for(const node of sources.get(root))if(tableRows.has(node))node.tBodies[0].replaceChildren(...tableRows.get(node));
    root.replaceChildren();root.hidden=false;root.style.visibility='hidden';pages[name]=[];
    let page,content;

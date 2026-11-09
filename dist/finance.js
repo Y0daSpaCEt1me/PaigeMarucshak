@@ -46,17 +46,17 @@ updateStatements();
 
 model.querySelectorAll('[data-scenario]').forEach(button=>button.addEventListener('click',()=>{[utilization.value,price.value]=button.dataset.scenario.split(',');model.querySelector('#operating-cost').value=200;model.querySelector('#loan-rate').value=7;updateStatements();}));
 
+
 const quantum=document.querySelector('#quantum-ledger');
 const inputs=[...quantum.querySelectorAll('[data-q-input]')];
+let assumptions={growth:60,margin:50,expenseGrowth:8,capex:30,sbc:60,openingCash:600};
 const format=x=>Math.abs(x)<.00001?'0.0':x<0?'('+money.format(-x)+')':money.format(x);
 function updateQuantum(){
- const assumptions=Object.fromEntries(inputs.map(input=>[input.dataset.qInput,Number(input.value)]));
- const years=calculateQuantum(assumptions),last=years[2];
- inputs.forEach(input=>{const key=input.dataset.qInput;quantum.querySelector('#q-'+key+'-label').textContent=['growth','margin','expenseGrowth'].includes(key)?input.value+'%':'$'+input.value+'M';});
+ const years=calculateQuantum(assumptions);
+ inputs.forEach(input=>{input.value=assumptions[input.dataset.qInput];});
+ quantum.querySelectorAll('[data-q-label]').forEach(out=>{const key=out.dataset.qLabel;out.textContent=['growth','margin','expenseGrowth'].includes(key)?assumptions[key]+'%':'$'+assumptions[key]+'M';});
  quantum.querySelectorAll('[data-q-value]').forEach(cell=>{const value=years[Number(cell.dataset.year)][cell.dataset.qValue];cell.textContent=format(value);cell.classList.toggle('negative',value<-.00001);});
- const summary={revenue:`Year 3 revenue: $${format(last.revenue)}M`,income:`Year 3 net income / (loss): $${format(last.income)}M`,opex:`Year 3 operating expenses: $${format(last.opex)}M`,fcf:`Year 3 free cash flow: $${format(last.fcf)}M`,dilution:`Year 3 original-owner dilution: ${last.dilution.toFixed(1)}%`,funding:`Total new equity required: $${format(last.totalFunding)}M`};
- quantum.querySelectorAll('[data-q-summary]').forEach(el=>el.textContent=summary[el.dataset.qSummary]);
 }
-quantum.addEventListener('input',updateQuantum);
-quantum.querySelectorAll('[data-q-preset]').forEach(button=>button.onclick=()=>{const presets={slow:[30,35,15,60,200,1000],base:[70,45,10,40,200,1000],scale:[110,65,5,60,200,1000]};inputs.forEach((input,i)=>input.value=presets[button.dataset.qPreset][i]);updateQuantum();});
+quantum.addEventListener('input',event=>{if(event.target.dataset.qInput){assumptions[event.target.dataset.qInput]=Number(event.target.value);updateQuantum();}});
+quantum.querySelectorAll('[data-q-preset]').forEach(button=>button.onclick=()=>{const presets={slow:[30,35,15,50,60,600],base:[60,50,8,30,60,600],scale:[100,65,5,50,60,600]};Object.keys(assumptions).forEach((key,i)=>assumptions[key]=presets[button.dataset.qPreset][i]);updateQuantum();});
 updateQuantum();

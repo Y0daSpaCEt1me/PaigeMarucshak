@@ -12,4 +12,5 @@ Do not publish through Sites. Historical .openai metadata is retained only for r
 
 The neutron scene requires a choice between fusion and ytterbium-171 trapped-ion quantum routes. Science navigation restarts the choice; there is no route-switch button. Quantum budgets are illustrative teaching assumptions. Qubit pulse probabilities and financial scenario controls are interactive. See ARTWORK.md for the generated replacement assets and prompts.
 
-The quantum workbook includes IonQ's reported 2024–2025 figures and a separately labeled three-year hypothetical model. Six inputs drive income, cash flow, balance sheet and equity dilution; required funding restores a $100M year-end reserve. Fusion supports capacity factor, price, operating-cost and interest-rate sensitivities. Paper sheets allow native scroll chaining. Both routes close with the quantum campus.
+The quantum workbook uses two dense fictional accounting sheets, calibrated against IonQ and Quantinuum only as scale checks. Six synchronized inputs drive income, cash flow, balance sheet and equity dilution; funding restores a $50M reserve. See MODEL_NOTES.md for sources and assumptions. Fusion supports capacity factor, price, operating-cost and interest-rate sensitivities. Paper sheets allow native scroll chaining. Both routes close with the current nighttime quantum campus.
+
