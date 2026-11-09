@@ -53,7 +53,7 @@ const qubit=document.createElement('div');qubit.className='qubit-control';qubit.
 let superposition=false;qubit.querySelector('button').onclick=()=>{superposition=!superposition;qubit.querySelector('button').textContent=superposition?'Reset to |0⟩':'Apply a half pulse';qubit.querySelector('output').textContent=superposition?'Superposition · P(0) = 50% · P(1) = 50%':'Prepared in |0⟩ · P(0) = 100%';};
 function updateCopy(i){
  $('read-model').hidden = true;
- choice.hidden=!scenes[i].choice;qubit.hidden=scenes[i].interaction!=='qubit';
+ screen.classList.toggle('is-qubit',scenes[i].interaction==='qubit');choice.hidden=!scenes[i].choice;qubit.hidden=scenes[i].interaction!=='qubit';
  modelDialog.hidden=scenes[i].ledger!=='fusion';quantumLedger.hidden=scenes[i].ledger!=='quantum';screen.classList.toggle('is-ledger',!!scenes[i].ledger);screen.classList.toggle('is-choice',!!scenes[i].choice);
  const s=scenes[i];papers.show(s.ledger,s.page??0);document.body.classList.toggle('on-paper',!!s.ledger||s.kind==='architecture');screen.classList.toggle('is-architecture',s.kind==='architecture');screen.classList.toggle('is-quantum-science',s.kind==='quantum-science');screen.classList.toggle('is-quantum-milestone',s.kind==='quantum-milestone');title.textContent=s.title;desc.textContent=s.description;eyebrow.textContent=s.eyebrow??'';
  if (s.timeline) desc.after(eyebrow);
@@ -92,16 +92,12 @@ function draw(){
  raf=0;if(!route&&!bypassChoice&&scrollY>gatePosition()){scrollTo({top:gatePosition(),behavior:'instant'});}const y=scrollY;const unit=clamp(y/(total*viewport))*total;
  let i=0;while(i<scenes.length-1&&unit>=offsets[i+1])i++;
  const local=clamp((unit-offsets[i])/scenes[i].units);
- const mix=i===scenes.length-1?0:ease(clamp((local-.58)/.42));
+ const mix=i===scenes.length-1?0:ease(clamp((local-.45)/.55));
  const active=reduced.matches?(mix>.5?Math.min(i+1,scenes.length-1):i):(mix>.5?Math.min(i+1,scenes.length-1):i);
  renderLayer(layers[0],scenes[i]);
  if(i<scenes.length-1)renderLayer(layers[1],scenes[i+1]);
  layers[0].style.opacity=reduced.matches?(mix>.5?0:1):1;
  layers[1].style.opacity=i===scenes.length-1?0:reduced.matches?(mix>.5?1:0):mix;
- if (!reduced.matches && (scenes[i].timeline || scenes[i+1]?.timeline)) {
-  layers[0].style.opacity = Math.max(0, 1 - 2 * mix);
-  layers[1].style.opacity = Math.max(0, 2 * mix - 1);
- }
  const bubbleProgress = i === scenes.length-1 && !reduced.matches ? local : 0;
  bubbleVeil.style.opacity = String(Math.sin(Math.PI * bubbleProgress));
  bubbleVeil.style.transform = `translateY(${-12 * bubbleProgress}%)`;

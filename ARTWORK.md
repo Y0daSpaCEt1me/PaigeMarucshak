@@ -33,3 +33,12 @@ Generated edits preserve the foreground composition and replace inconsistent ext
 - quantum-scale-night.webp, quantum-lab-night.webp, quantum-prototype-night.webp: Preserve foreground equipment, researchers, framing and warm interior lighting. Exterior windows show full night, navy sky, dark mountains, lake and distant city lights; remove nearby campus buildings, daylight and sunset colors. No text or timeline.
 
 Original assets remain available. Each new scene was inspected after generation; web assets encoded as high-quality WebP.
+
+## November 8: softer ion and matched drawing
+Built-in imagegen edits, saved to dist/assets/yb-ion-fuzzy.webp and dist/assets/quantum-paper-matched.webp.
+
+Ion prompt: Preserve exact nucleus arrangement, ivory protons, neutral silver charcoal gray neutrons, blue outer electron cloud, black background and framing. Make every proton and neutron distinctly fuzzy: soft diffuse luminous edges with fine wispy grain and cloudy particle halos, not smooth glass marbles. Retain dimensional individually distinguishable particles. No text.
+
+Drawing prompt: Convert this exact view to a detailed blue-gray architectural pencil line drawing on warm cream drafting paper. Preserve EXACT building architecture, all window and roof locations, shoreline, foreground laboratory, central entrance, camera angle and framing. No redesign, no new buildings. Lake rendered in delicate lines, sky mostly blank cream paper for heading. Full bleed paper no gray border no text.
+
+Sources: yb-ion-gray.webp and quantum-campus-night.webp respectively. Original files retained.
