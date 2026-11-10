@@ -8,7 +8,7 @@ export function preparePaperSlides(fusion,quantum){
  const pages={fusion:[],quantum:[]};
  function paginate(){
   for(const [name,root] of Object.entries(models)){
-   if(name==='quantum'){
+   if(sources.get(root).every(node=>node.classList.contains('workbook-sheet'))){
     const sheets=sources.get(root);root.replaceChildren(...sheets);pages[name]=sheets;
     sheets.forEach((sheet,i)=>{sheet.classList.add('paper-page');if(!sheet.querySelector('.paper-folio')){const footer=document.createElement('p');footer.className='paper-folio';footer.textContent=`${i+1} / ${sheets.length} · Scroll to continue`;sheet.append(footer);}sheet.hidden=true;});
     root.hidden=true;continue;

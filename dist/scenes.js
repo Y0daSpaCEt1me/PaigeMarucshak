@@ -12,10 +12,10 @@ const fusionScenes=[
  {asset:'reactor',chapter:1,units:.85,eyebrow:'From one event to a system',title:'Imagine harnessing that reaction.',description:'Laser beams compress and heat a tiny fuel target. A power plant would need to repeat this process reliably.'},
  {asset:'heat',chapter:1,units:.7,eyebrow:'Capturing the energy',title:'Fusion energy becomes heat.',description:'A surrounding blanket captures energy carried by neutrons; a cooling system carries heat toward a power cycle.'},
  {asset:'turbine',chapter:1,units:.7,eyebrow:'Heat → electricity',title:'Heat drives a turbine.',description:'The turbine turns a generator, converting that energy into electricity.'},
- {asset:'power',chapter:2,units:.8,eyebrow:'02 / One possible future',title:'Power reaches beyond the plant.',description:'An imagined fusion company supplies electricity to businesses and communities.'},
- {asset:'quantum-arrival',chapter:2,units:.85,eyebrow:'Energy enables possibility',title:'Including a quantum computing company.',description:'Reliable electricity supports the cooling, control systems, and infrastructure around quantum hardware.'},
- {asset:'quantum-campus',chapter:2,kind:'closing',units:1,eyebrow:'A vision, not a forecast',title:'One Possible Future',description:''},
- {asset:'quantum-campus',chapter:3,kind:'closing',units:1.1,eyebrow:'03 / Building that future',title:'What would it take to build this?',description:''},
+ {asset:'power',chapter:2,units:.8,eyebrow:'02 / One possible future',title:'From the fusion plant to the grid.',description:'The plant exports electricity to the grid, connecting this imagined source of energy to the businesses that use it.'},
+ {asset:'quantum-arrival',chapter:2,units:.85,eyebrow:'Energy enables possibility',title:'One customer: a quantum computing company.',description:'Follow that electricity to a different facility: a quantum computing campus. Here it powers lasers, controls, cooling, and the buildings around the processors.'},
+ {asset:'fusion-campus',chapter:2,kind:'closing',units:1,eyebrow:'A vision, not a forecast',title:'One Possible Future',description:''},
+ {asset:'fusion-campus',chapter:3,kind:'closing',units:1.1,eyebrow:'03 / Building that future',title:'What would it take to build this?',description:''},
  {asset:'fusion-campus',chapter:3,units:.65,eyebrow:'Return to the fusion company',title:'Begin with the physical system.',description:'The vision depends on an engineered facility that can operate reliably.'},
  {asset:'fusion-outline',chapter:3,units:.65,eyebrow:'Designing the company',title:'A possibility becomes a plan.',description:'The reactor, lasers, cooling systems, and grid connection all have to work together.'},
  {asset:'fusion-paper',chapter:3,kind:'paper',units:.75,eyebrow:'From architecture to decisions',title:'Put the plan on paper.',description:'Define what must be built—and what must still be demonstrated.'},
@@ -47,8 +47,8 @@ export function createScenes(route='fusion') {
  const shared=fusionScenes.slice(0,4).map(s=>({...s}));
  shared[3].description='Protons and neutrons help make atomic nuclei. From here, choose which possibility to explore.';
  shared[3].choice=true;
- const ending=fusionScenes.slice(-3).map(s=>({...s,asset:'quantum-campus'}));
+ const ending=fusionScenes.slice(-3).map(s=>({...s,asset:route==='quantum'?'quantum-campus':'fusion-campus'}));
  const middle=route==='quantum'?quantumScience:fusionScenes.slice(4,-3).map(s=>s.asset==='fusion-model'?{...s,kind:'ledger',ledger:'fusion'}:s);
- return [...shared,...middle,...ending].map(s=>s.asset==='fusion-paper'?{...s,asset:'fusion-paper-v2',kind:'architecture'}:['quantum-campus','quantum-arrival'].includes(s.asset)?{...s,asset:'quantum-campus-night'}:s);
+ return [...shared,...middle,...ending].map(s=>s.ledger?{...s,asset:'drafting-paper'}:s).map(s=>s.asset==='fusion-paper'?{...s,asset:'fusion-paper-v2',kind:'architecture'}:['quantum-campus','quantum-arrival'].includes(s.asset)?{...s,asset:'quantum-campus-night'}:s);
 }
 export const scenes=createScenes();

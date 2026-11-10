@@ -14,6 +14,8 @@ function resize(){viewport=innerHeight;story.style.height=`${(total+1)*viewport}
 const loaded=new Map();
 function preload(key){if(loaded.has(key))return loaded.get(key);const im=new Image();im.src=assets[key].file;const p=im.decode().catch(()=>{});loaded.set(key,p);return p;}
 function renderLayer(el,s){
+ if(s.ledger){el.replaceChildren();el.className='scene-layer';el.style.background='#efdfbd';el.dataset.asset='drafting-paper';delete el.dataset.crop;return;}
+ el.style.background='';
  if(el.dataset.asset===s.asset&&el.dataset.crop===String(s.crop??1))return;
  const a=assets[s.asset];el.replaceChildren();el.className='scene-layer '+(s.kind??'')+(s.timeline?' milestone':'');
  const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');

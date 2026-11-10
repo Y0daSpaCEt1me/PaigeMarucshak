@@ -1,51 +1,21 @@
 import {calculateQuantum} from './quantum-model.js';
-// All statement values are in millions of dollars. The loan is drawn at commissioning.
-const model = document.querySelector('#model-details');
-const utilization = model.querySelector('#plant-use');
-const price = model.querySelector('#power-price');
-const money = new Intl.NumberFormat('en-US', {minimumFractionDigits: 1, maximumFractionDigits: 1});
-
-function updateStatements() {
-  const mwh = 1000 * 8760 * utilization.value / 100;
-  const revenue = mwh * price.value / 1e6;
-  const costs=Number(model.querySelector('#operating-cost').value);
-  const ebitda = revenue - costs;
-  const depreciation = 6000 / 30;
-  const principal = 2400 / 20;
-  const rate=Number(model.querySelector('#loan-rate').value);
-  const interest = 2400 * rate/100;
-  const pretax = ebitda - depreciation - interest;
-  const tax = Math.max(0, pretax * .25);
-  const income = pretax - tax;
-  const available = ebitda - tax - 60;
-  const service = principal + interest;
-  const retainedCash = available - service;
-  const closingCash = 200 + retainedCash;
-  const closingPlant = 6000 + 60 - depreciation;
-  const closingDebt = 2400 - principal;
-  const closingEquity = 3800 + income;
-  const figures = {costs,interest,service,revenue, ebitda, pretax, tax, income, available, retainedCash, closingCash,
-    closingPlant, closingDebt, closingEquity, accumulated: -2000 + income,
-    assets: closingCash + closingPlant, financing: closingDebt + closingEquity};
-  for (const cell of model.querySelectorAll('[data-figure]')) {
-    cell.textContent = money.format(figures[cell.dataset.figure]);
-  }
-  model.querySelector('#cost-label').textContent='$'+costs+'M';
-  model.querySelector('#rate-label').textContent=rate+'%';
-  model.querySelector('#use-label').textContent = utilization.value + '%';
-  model.querySelector('#price-label').textContent = '$' + price.value + '/MWh';
-  model.querySelector('#generation').textContent = mwh.toLocaleString('en-US');
-  model.querySelector('#coverage').textContent = (available / service).toFixed(2) + '×';
-  model.querySelector('#coverage-status').textContent = available >= 1.35 * service
-    ? 'Meets the illustrative 1.35× lender test.'
-    : available >= service ? 'Covers scheduled payments but falls below the 1.35× lender test.'
-    : 'Operating cash falls short of scheduled payments. The shortfall draws on opening cash.';
+const money = new Intl.NumberFormat('en-US', {minimumFractionDigits:1,maximumFractionDigits:1});
+const model=document.querySelector('#model-details');
+const f={use:80,price:100,cost:200,rate:7};
+function updateFusion(){
+ let cash=200,ppe=6000,debt=2400,equity=3800;const years=[];
+ for(let y=0;y<3;y++){
+ const startCash=cash,revenue=1000*8760*f.use/100*f.price/1e6,cost=f.cost,ebitda=revenue-cost,da=200,operating=ebitda-da,interest=debt*f.rate/100,pretax=operating-interest,tax=Math.max(0,pretax*.25),income=pretax-tax,cfo=income+da,capex=60,fcf=cfo-capex,principal=120,funding=Math.max(0,50-(cash+fcf-principal)),coverage=(ebitda-tax-capex)/(interest+principal);
+ cash+=fcf-principal+funding;ppe+=capex-da;debt-=principal;equity+=income+funding;const assets=cash+ppe,financing=debt+equity;
+ years.push({startCash,revenue,cost,ebitda,da,operating,interest,pretax,tax,income,cfo,capex,fcf,principal,funding,coverage,cash,ppe,debt,equity,assets,financing,check:assets-financing});
+ }
+ model.querySelectorAll('[data-f-input]').forEach(e=>e.value=f[e.dataset.fInput]);
+ model.querySelectorAll('[data-f-label]').forEach(e=>{const k=e.dataset.fLabel;e.textContent=['use','rate'].includes(k)?f[k]+'%':'$'+f[k];});
+ model.querySelectorAll('[data-f-value]').forEach(e=>{const v=years[+e.dataset.year][e.dataset.fValue];e.textContent=Math.abs(v)<.00001?'0.0':v<0?'('+money.format(-v)+')':money.format(v);e.classList.toggle('negative',v<-.00001);});
 }
-model.addEventListener('input', updateStatements);
-updateStatements();
-
-model.querySelectorAll('[data-scenario]').forEach(button=>button.addEventListener('click',()=>{[utilization.value,price.value]=button.dataset.scenario.split(',');model.querySelector('#operating-cost').value=200;model.querySelector('#loan-rate').value=7;updateStatements();}));
-
+model.addEventListener('input',e=>{if(e.target.dataset.fInput){f[e.target.dataset.fInput]=+e.target.value;updateFusion();}});
+model.querySelectorAll('[data-f-preset]').forEach(e=>e.onclick=()=>{Object.assign(f,({low:{use:55,price:70,cost:250,rate:9},base:{use:80,price:100,cost:200,rate:7},high:{use:90,price:140,cost:180,rate:5}})[e.dataset.fPreset]);updateFusion();});
+updateFusion();
 
 const quantum=document.querySelector('#quantum-ledger');
 const inputs=[...quantum.querySelectorAll('[data-q-input]')];

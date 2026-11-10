@@ -14,3 +14,5 @@ The neutron scene requires a choice between fusion and ytterbium-171 trapped-ion
 
 The quantum workbook uses two dense fictional accounting sheets, calibrated against IonQ and Quantinuum only as scale checks. Six synchronized inputs drive income, cash flow, balance sheet and equity dilution; funding restores a $50M reserve. See MODEL_NOTES.md for sources and assumptions. Fusion supports capacity factor, price, operating-cost and interest-rate sensitivities. Paper sheets allow native scroll chaining. Both routes close with the current nighttime quantum campus.
 
+
+November 9 revision: Both routes use two authored financial sheets with synchronized controls. Fusion projects three operating years after commissioning, with interest on declining opening debt, $120M annual principal and conditional equity funding to maintain $50M cash. Financial raster images are excluded from scene rendering and preloading. Fusion future and closing slides retain the fusion campus; the quantum customer appears only in its explicitly labeled customer scene.
