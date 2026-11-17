@@ -22,3 +22,5 @@ November 13 story revision: Fusion now reveals the complete power plant before f
 November 13 visual correction: Removed all added equipment strips and diagram cards. Qubit states and pulse response now use matched full-background cinematic images. Restored the wide grid-arrival composition with foreground transmission lines and the quantum facility beyond them; plant, community/grid, and company arrival are separate scenes rather than a split-screen comparison.
 
 November 16 atomic sequence: Replaced the exterior computation image with three full-screen prepare/interact/evolve scenes using the approved gold-and-gray atom style. The paired ions retain their positions while illustrative state clouds change, before fluorescence measurement. Added scroll space, mobile framing that keeps both ions visible, and versioned resource URLs.
+
+November 16 flow adjustment: Quantum opens with atom → prepare → interact → evolve, then explains the internal states and pulls back to trap, chain, and measurement. Electron removal is explained during preparation instead of repeating the atom image.

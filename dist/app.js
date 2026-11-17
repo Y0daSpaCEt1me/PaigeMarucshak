@@ -1,9 +1,9 @@
 import {preparePaperSlides} from './paper.js';
-import {createStoryVisual,advanceStoryVisual,updateQubitVisual} from './story-visuals.js?v=20261116-atomic-1';
-import {scenes,fusionMilestones,quantumMilestones,createScenes} from './scenes.js?v=20261116-atomic-1';
+import {createStoryVisual,advanceStoryVisual,updateQubitVisual} from './story-visuals.js?v=20261116-atomic-2';
+import {scenes,fusionMilestones,quantumMilestones,createScenes} from './scenes.js?v=20261116-atomic-2';
 history.scrollRestoration='manual';
 if(!location.hash)scrollTo(0,0);
-const assets=await fetch('assets.json?v=20261116-atomic-1',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Image manifest unavailable');return r.json()});
+const assets=await fetch('assets.json?v=20261116-atomic-2',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Image manifest unavailable');return r.json()});
 const $=id=>document.getElementById(id);
 const story=$('opening'),screen=story.querySelector('.screen'),layers=[$('layer-a'),$('layer-b')];
 const copy=$('scene-copy'),title=$('scene-title'),desc=$('scene-description'),eyebrow=$('scene-eyebrow');
