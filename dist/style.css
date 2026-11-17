@@ -235,3 +235,39 @@ html{scroll-padding-top:0}.particle-field{position:fixed;inset:0;z-index:-1}.res
 @media(max-width:700px){:is(#quantum-ledger,#model-details)>.workbook-sheet{inset:76px 5vw 46px}.workbook-note{font-size:10px}.screen.is-qubit .scene-copy{bottom:83px}.workbook-sheet .paper-folio{font-size:8px}}
 /* The folio sits above navigation, with its own clear baseline. */
 .workbook-sheet .paper-folio{bottom:-7px;left:auto;right:0;text-align:right}
+/* Cinematic story frames: one background per scene, without diagram panels. */
+.screen{overflow:clip}
+.scene-layer.story-illustration{inset:0}
+.story-visual{position:absolute;inset:0;background:#000;overflow:hidden}
+.story-art{width:100%;height:100%;object-fit:cover;object-position:65% 38%;transform:scale(var(--camera,1));transform-origin:65% 35%}
+.story-visual:after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,#000d 0%,#0006 23%,transparent 65%);pointer-events:none}
+.visual-states:after,.visual-pulse:after{display:none}
+.visual-states .story-art,.visual-pulse .story-art{object-fit:contain}
+.screen.is-story-visual .shade{display:none}
+.screen.is-story-visual .scene-copy{left:5vw;right:auto;max-width:620px;bottom:120px}
+.screen.is-story-visual .scene-copy h1{font-size:clamp(30px,3.3vw,52px)}
+.screen.is-story-visual .scene-copy>#scene-description{font-size:clamp(15px,1.2vw,18px)}
+.visual-readout .story-art{object-position:67% 35%}
+.visual-result .story-art{object-position:77% 35%}
+.visual-atomic-sequence .story-art{object-fit:contain;object-position:center;transform-origin:center}
+@media(max-width:700px){
+ .story-art{height:66%;object-position:67% 35%;mask-image:linear-gradient(#000 70%,transparent)}
+ .visual-result .story-art{object-position:100% 35%}
+ .visual-atomic-sequence .story-art{position:absolute;top:100px;left:0;width:100%;height:auto;object-fit:contain;mask-image:none}
+ .visual-states .story-art,.visual-pulse .story-art{position:absolute;top:80px;left:-62%;width:170%;height:auto;object-fit:contain;mask-image:none}
+ .visual-grid .story-art,.visual-arrival .story-art,.visual-plant .story-art{object-fit:cover;object-position:42% center;height:62%;mask-image:linear-gradient(#000 78%,transparent)}
+ .screen.is-story-visual .scene-copy,.screen.is-story-visual.is-qubit .scene-copy{left:6%;right:6%;max-width:none;bottom:82px}
+ .screen.is-story-visual .scene-copy h1{font-size:clamp(24px,6.8vw,30px);margin:9px 0 12px}
+ .screen.is-story-visual .scene-copy>#scene-description{font-size:14px;line-height:1.5}
+ .screen.is-story-visual .eyebrow{font-size:8px}
+ .screen.is-story-visual .qubit-control button{padding:8px 12px;margin-top:10px}
+ .screen.is-story-visual .qubit-control output{font-size:11px}
+ .screen.is-story-visual .qubit-control small{font-size:10px;margin-top:5px}
+}
+@media(max-height:720px) and (max-width:700px){
+ .screen.is-story-visual .scene-copy h1{font-size:23px;margin:6px 0 8px}
+ .screen.is-story-visual .scene-copy>#scene-description{font-size:12px;line-height:1.4}
+ .screen.is-story-visual .qubit-control button{margin-top:5px;min-height:36px;font-size:12px}
+ .screen.is-story-visual .qubit-control output{margin-top:4px}
+}
+@media(prefers-reduced-motion:reduce){.story-art{transform:none}}

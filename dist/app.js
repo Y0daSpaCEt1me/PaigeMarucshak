@@ -1,8 +1,9 @@
 import {preparePaperSlides} from './paper.js';
-import {scenes,fusionMilestones,quantumMilestones,createScenes} from './scenes.js';
+import {createStoryVisual,advanceStoryVisual,updateQubitVisual} from './story-visuals.js?v=20261116-atomic-1';
+import {scenes,fusionMilestones,quantumMilestones,createScenes} from './scenes.js?v=20261116-atomic-1';
 history.scrollRestoration='manual';
 if(!location.hash)scrollTo(0,0);
-const assets=await fetch('assets.json').then(r=>{if(!r.ok)throw Error('Image manifest unavailable');return r.json()});
+const assets=await fetch('assets.json?v=20261116-atomic-1',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Image manifest unavailable');return r.json()});
 const $=id=>document.getElementById(id);
 const story=$('opening'),screen=story.querySelector('.screen'),layers=[$('layer-a'),$('layer-b')];
 const copy=$('scene-copy'),title=$('scene-title'),desc=$('scene-description'),eyebrow=$('scene-eyebrow');
@@ -14,9 +15,11 @@ function resize(){viewport=innerHeight;story.style.height=`${(total+1)*viewport}
 const loaded=new Map();
 function preload(key){if(loaded.has(key))return loaded.get(key);const im=new Image();im.src=assets[key].file;const p=im.decode().catch(()=>{});loaded.set(key,p);return p;}
 function renderLayer(el,s){
- if(s.ledger){el.replaceChildren();el.className='scene-layer';el.style.background='#efdfbd';el.dataset.asset='drafting-paper';delete el.dataset.crop;return;}
+ if(s.ledger){el.replaceChildren();el.className='scene-layer';el.style.background='#efdfbd';el.dataset.asset='drafting-paper';delete el.dataset.crop;delete el.dataset.visual;return;}
  el.style.background='';
- if(el.dataset.asset===s.asset&&el.dataset.crop===String(s.crop??1))return;
+ if(el.dataset.asset===s.asset&&el.dataset.crop===String(s.crop??1)&&el.dataset.visual===(s.visual??''))return;
+ el.dataset.visual=s.visual??'';
+ if(s.visual){el.replaceChildren(createStoryVisual(s,assets));el.className='scene-layer story-illustration';el.dataset.asset=s.asset;el.dataset.crop=s.crop??1;return;}
  const a=assets[s.asset];el.replaceChildren();el.className='scene-layer '+(s.kind??'')+(s.timeline?' milestone':'');
  const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
  const imageHeight=Math.floor(a.h*(s.crop??1));
@@ -52,8 +55,14 @@ copy.append(choice);
 
 choice.querySelectorAll('button').forEach(b=>b.onclick=()=>{route=b.dataset.route;rebuildScenes();currentIndex=-1;resize();updateTranscript();go(4);});
 const qubit=document.createElement('div');qubit.className='qubit-control';qubit.hidden=true;qubit.innerHTML='<button type="button">Apply a half pulse</button><output>Prepared in |0⟩ · P(0) = 100%</output><small>Idealized probability demonstration</small>';copy.append(qubit);
-let superposition=false;qubit.querySelector('button').onclick=()=>{superposition=!superposition;qubit.querySelector('button').textContent=superposition?'Reset to |0⟩':'Apply a half pulse';qubit.querySelector('output').textContent=superposition?'Superposition · P(0) = 50% · P(1) = 50%':'Prepared in |0⟩ · P(0) = 100%';};
+let superposition=false;
+function setQubit(value){superposition=value;screen.classList.toggle('has-superposition',value);layers.forEach(layer=>updateQubitVisual(layer,value,assets));qubit.querySelector('button').textContent=value?'Reset to |0⟩':'Apply a half pulse';qubit.querySelector('output').textContent=value?'Superposition · P(0) = 50% · P(1) = 50%':'Prepared in |0⟩ · P(0) = 100%';}
+qubit.querySelector('output').setAttribute('aria-live','polite');
+qubit.querySelector('button').onclick=()=>setQubit(!superposition);
 function updateCopy(i){
+ if(scenes[i].interaction==='qubit'&&scenes[currentIndex]?.interaction!=='qubit')setQubit(false);
+ screen.classList.toggle('is-story-visual',!!scenes[i].visual);
+ screen.dataset.visual=scenes[i].visual??'';
  $('read-model').hidden = true;
  screen.classList.toggle('is-qubit',scenes[i].interaction==='qubit');choice.hidden=!scenes[i].choice;qubit.hidden=scenes[i].interaction!=='qubit';
  modelDialog.hidden=scenes[i].ledger!=='fusion';quantumLedger.hidden=scenes[i].ledger!=='quantum';screen.classList.toggle('is-ledger',!!scenes[i].ledger);screen.classList.toggle('is-choice',!!scenes[i].choice);
@@ -75,7 +84,7 @@ function updateCopy(i){
  $('scene-count').textContent=`${String(i+1).padStart(2,'0')} / ${scenes.length}`;
  $('previous').disabled=i===0;$('next').disabled=!!s.choice&&!route;
  currentIndex=i;
- for(let j=i;j<Math.min(scenes.length,i+4);j++)preload(scenes[j].asset);
+ for(let j=i;j<Math.min(scenes.length,i+4);j++){preload(scenes[j].asset);if(scenes[j].interaction==='qubit')preload('qubit-superposition-v1');}
 }
 // A scroll-driven band of bubbles bridges the fusion campus and the profile canvas.
 const bubbleVeil = document.createElement('div');
@@ -98,6 +107,9 @@ function draw(){
  const active=reduced.matches?(mix>.5?Math.min(i+1,scenes.length-1):i):(mix>.5?Math.min(i+1,scenes.length-1):i);
  renderLayer(layers[0],scenes[i]);
  if(i<scenes.length-1)renderLayer(layers[1],scenes[i+1]);
+ advanceStoryVisual(layers[0],scenes[i],local,reduced.matches);
+ advanceStoryVisual(layers[1],scenes[i+1],0,reduced.matches);
+ layers.forEach(layer=>updateQubitVisual(layer,superposition,assets));
  layers[0].style.opacity=reduced.matches?(mix>.5?0:1):1;
  layers[1].style.opacity=i===scenes.length-1?0:reduced.matches?(mix>.5?1:0):mix;
  const bubbleProgress = i === scenes.length-1 && !reduced.matches ? local : 0;
