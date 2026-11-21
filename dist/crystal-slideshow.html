@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Single-crystal growth of Tb₆Cr₄Al₄₃ · Paige Maruschak</title>
+<link rel="icon" href="favicon.svg">
+<style>
+* { box-sizing: border-box }
+body { margin: 0; background: #101513; color: #eff5ef; font: 1rem system-ui,sans-serif }
+main, figure { position: fixed; inset: 0; margin: 0 }
+figure { background: #101513 }
+img { display: block; width: 100%; height: 100%; object-fit: fill }
+:root { view-transition-name: none }
+#slide { view-transition-name: crystal-slide }
+::view-transition { pointer-events: none }
+::view-transition-old(crystal-slide), ::view-transition-new(crystal-slide) { animation-duration: 450ms; animation-timing-function: ease-in-out }
+@media (prefers-reduced-motion: no-preference) {
+  #slide { animation: arrive 450ms ease-out }
+  @keyframes arrive { from { opacity: 0 } to { opacity: 1 } }
+}
+h1 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%) }
+main > a, nav { position: fixed; z-index: 1; background: #15201dec; color: white; border-radius: 2rem; font: 500 .875rem system-ui,sans-serif }
+main > a { top: max(.6rem, env(safe-area-inset-top)); left: .75rem; padding: .55rem .9rem }
+nav { bottom: max(.6rem, env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: .65rem; white-space: nowrap; padding: .15rem .4rem }
+button { color: inherit; background: transparent; border: 0; font: inherit; padding: .6rem; cursor: pointer }
+button:disabled { opacity: .5 }</style>
+</head>
+<body>
+<main>
+<a href="index.html#crystal-research">← Back to research</a>
+<h1>Single-crystal growth and physical properties of Tb₆Cr₄Al₄₃</h1>
+<figure><img id="slide" src="assets/tb6cr4al43/slide-1.png" alt="Title slide"></figure>
+<nav aria-label="Slide navigation"><button id="previous" disabled>Previous</button><span id="position" aria-live="polite">1 / 17</span><button id="next">Next</button></nav>
+</main>
+<script>
+const titles = ['Title slide','Presentation outline','Introduction to Tb₆Cr₄Al₄₃','Prior research','Ferromagnetism','Crystal anisotropy','Crystal growth process','Sample preparation','X-ray diffraction','Unit cell and X-ray data','Transport properties','Transport measurements','Temperature-dependent and field-dependent resistivity','Resistivity results','Hall resistivity','Conclusions','Acknowledgments'];
+const slide = document.querySelector('#slide');
+const previous = document.querySelector('#previous');
+const next = document.querySelector('#next');
+let index = 0;
+function showSlide(number) {
+  const target = Math.max(0, Math.min(titles.length - 1, number));
+  if (target === index) return;
+  index = target;
+  if (document.startViewTransition && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.startViewTransition(updateSlide);
+  } else {
+    updateSlide();
+  }
+}
+function updateSlide() {
+  slide.src = 'assets/tb6cr4al43/slide-' + (index + 1) + '.png';
+  slide.alt = titles[index];
+  document.querySelector('#position').textContent = (index + 1) + ' / ' + titles.length;
+  previous.disabled = index === 0;
+  next.disabled = index === titles.length - 1;
+  return slide.decode().catch(() => {});
+}
+previous.onclick = () => showSlide(index - 1);
+next.onclick = () => showSlide(index + 1);
+document.addEventListener('keydown', event => {
+  if (event.altKey || event.ctrlKey || event.metaKey) return;
+  if (event.key === 'ArrowLeft') showSlide(index - 1);
+  if (event.key === 'ArrowRight') showSlide(index + 1);
+});
+let distance = 0;
+let lastWheel = -Infinity;
+let lastAdvance = -Infinity;
+let gestureUsed = false;
+window.addEventListener('wheel', event => {
+  if (event.ctrlKey || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+  event.preventDefault();
+  const now = performance.now();
+  if (now - lastWheel > 320) {
+    gestureUsed = false;
+    distance = 0;
+  }
+  lastWheel = now;
+  const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? innerHeight : 1;
+  if (now - lastAdvance < 900) {
+    distance = 0;
+    return;
+  }
+  if (Math.sign(distance) !== Math.sign(event.deltaY)) distance = 0;
+  distance += event.deltaY * unit;
+  if (Math.abs(distance) >= 120 && !gestureUsed) {
+    showSlide(index + Math.sign(distance));
+    gestureUsed = true;
+    lastAdvance = now;
+  }
+}, { passive: false });
+let touchY;
+slide.addEventListener('touchstart', event => {
+  touchY = event.touches.length === 1 ? event.touches[0].clientY : undefined;
+}, { passive: true });
+slide.addEventListener('touchend', event => {
+  const distance = touchY - event.changedTouches[0].clientY;
+  if (Math.abs(distance) > 45) showSlide(index + Math.sign(distance));
+  touchY = undefined;
+});
+</script>
+</body></html>
